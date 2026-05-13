@@ -123,7 +123,7 @@ export const LaptopCodeIcon: React.FC = () => {
 
 export const GridIcon: React.FC<{}> = () => {
   return (
-    <svg opacity={'50%'} width="1280" height="461" viewBox="0 0 1280 461" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="1280" height="461" viewBox="0 0 1280 461" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g opacity="0.5" clipPath="url(#clip0_445_7250)">
       <path fillRule="evenodd" clipRule="evenodd" d="M0 58.7206H48V0H47V57.4972H0V58.7206Z" fill="#1A56DB" fillOpacity="0.1"/>
       <path fillRule="evenodd" clipRule="evenodd" d="M48 58.7206H96V0H95V57.4972H48V58.7206Z" fill="#1A56DB" fillOpacity="0.1"/>

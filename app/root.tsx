@@ -66,6 +66,8 @@ export default function App() {
       c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>
       <AppShell.Header mih={88}
         bg={computedColorScheme === 'dark' ? theme.colors.darkBlue[0] : theme.white}
+        bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}
+        style={{boxShadow: `0px 2px 10px 6px ${computedColorScheme === 'dark' ? 'rgba(3, 84, 166, 0.08)' : 'rgba(1, 17, 33, 0.04)'}`}}
       >
         <NavigationBar/>
       </AppShell.Header>

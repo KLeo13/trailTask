@@ -12,7 +12,7 @@ const CTASection: React.FC<{}> = () => {
         backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white
       }}>
         <Flex direction={'column'} align={'center'} maw={1440} mx={'auto'} px={{base: 20, md: 40}} pos={'relative'} className="overflow-hidden" >
-          <Box pos={'absolute'} bdrs={'lg'} w={'100%'} className="overflow-hidden"
+          <Box pos={'absolute'} bdrs={'lg'} w={'100%'} className="overflow-hidden opacity-50"
             style={{
               background: `linear-gradient(180deg, ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[2]} 0%, ${computedColorScheme === 'dark' ? theme.colors.blue[8] :  theme.white } 100%)`,
             }}>
@@ -23,7 +23,7 @@ const CTASection: React.FC<{}> = () => {
               <Box w={6} h={6} className="bg-green-700" bdrs={'100%'}/>
               <Text size="sm">{'Available for new projects '}</Text>
             </Flex>
-            <h2 className="text-6xl text-center" style={{color: computedColorScheme === 'dark' ? theme.colors.blue[5] : theme.colors.blue[4] }}>{'Have a project in mind?'}</h2>
+            <h2 className="text-6xl text-center" style={{color: computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5] }}>{'Have a project in mind?'}</h2>
             <Text ta={'center'}>{'I’m always open to collaborating on meaningful products and solving complex problems together.'}</Text>
             <MainCTA size="lg"/>
           </Flex>

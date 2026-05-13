@@ -6,9 +6,10 @@ const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb'}> =
   const theme = useMantineTheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
   return (
-    <Card p={"md"} orientation={type === 'main' ? 'vertical' : 'horizontal'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={"100%"} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} className="flex flex-col gap-4" c="inherit">
-        <Image bdrs={'md'} src={item.image} alt={item.image} w={type === 'main' ? {base: 582, xs: '100%'} : 180} h={type === 'main' ? 319 : '100%'}/>
-        <Flex direction={"column"} gap="sm">
+    <Card p={"md"} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={"100%"} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} c="inherit">
+      <Flex direction={{base: 'column', xs: type === 'main' ? 'column' : 'row'}} gap={'sm'}>
+        <Image bdrs={'md'} src={item.image} alt={item.image} w={type === 'main' ? {base: 582, xs: '100%'} : {base: '100%', xs: 180}} h={type === 'main' ? 319 : '100%'}/>
+        <Flex direction={"column"} gap="sm" justify={'center'}>
           <Flex gap="sm" c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
             <Text fz={'sm'}>{item.category}</Text>
             <Text fz={'sm'}>•</Text>
@@ -17,6 +18,7 @@ const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb'}> =
           <Text fz={24} fw={"bold"} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{item.title}</Text>
           <Text display={type === 'main' ? 'block' : 'none'} className="line-clamp-3">{item.content}</Text>
         </Flex>
+      </Flex>
     </Card>
   )
 }
