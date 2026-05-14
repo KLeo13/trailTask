@@ -20,7 +20,10 @@ const CTASection: React.FC<{}> = () => {
           </Box>
           <Flex direction={'column'} className="z-10" justify={'center'} align={'center'} py={50} gap={40}>
             <Flex bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.gray[0]}`} p={5} px={15} bdrs={'xl'} align={'center'} gap={6} mb={20}>
-              <Box w={6} h={6} className="bg-green-700" bdrs={'100%'}/>
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-700 opacity-75"></span>
+                <span className="relative inline-flex size-2 rounded-full bg-green-700"></span>
+              </span>
               <Text size="sm">{'Available for new projects '}</Text>
             </Flex>
             <h2 className="text-6xl text-center" style={{color: computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5] }}>{'Have a project in mind?'}</h2>

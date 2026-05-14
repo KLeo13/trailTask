@@ -2,6 +2,7 @@ import { Box, Flex, Image, Text, useComputedColorScheme, useMantineTheme } from 
 import { Link } from "react-router";
 import { socialLinks } from "~/utils/constant";
 import { DownloadCTA, MainCTA } from "../Action/CTAButtons";
+import TypingText from "../Plugins/TypingText";
 
 const HeroSection: React.FC<{}> = () => {
 
@@ -19,7 +20,13 @@ const HeroSection: React.FC<{}> = () => {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             } as React.CSSProperties}>{'Jake Sta. Teresa'}</h1>
-            <Text fz={{base: 24, sm: 30}} c={computedColorScheme === 'dark' ? 'white' : 'black'}>{'Software Engine|'}</Text>
+            <Text fz={{base: 24, sm: 30}} c={computedColorScheme === 'dark' ? 'white' : 'black'}>
+              <TypingText words={['Software Architect', 'AI Engineer', 'Entrepreneur', 'Mentor']}
+                typeSpeed={80}
+                deleteSpeed={40}
+                delay={1500}
+              />
+            </Text>
           </Flex>
           <Text fz={'sm'}>
             {'20+ years building scalable, user-centric products across AI, fintech, health tech, and enterprise.'}
