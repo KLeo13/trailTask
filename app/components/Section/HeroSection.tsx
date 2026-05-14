@@ -50,14 +50,13 @@ const HeroSection: React.FC<{}> = () => {
         </Flex>
         <Flex flex={1} justify={{base: 'center', md: 'end'}}>
           <Flex justify={'center'} align={'center'} w={'100%'} maw={370} p={'lg'} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] :theme.colors.blue[1]} className="relative rounded-3xl rounded-bl-[7rem] md:me-5">
-            <Image src={'/images/hero.png'} alt="hero-template" className="!rounded-2xl !rounded-bl-[6rem] z-10"/>
+            <Image src={'/images/hero.png'} alt="hero-template" className="rounded-2xl! rounded-bl-[6rem]! z-10"/>
             <div className="absolute hidden lg:block top-10 -left-30 size-10 opacity-10 rounded-md" style={{backgroundColor: theme.colors.blue[5]}}/>
             <div className="absolute hidden lg:block bottom-10 -left-15 size-29 opacity-10 rounded-md" style={{backgroundColor: theme.colors.blue[5]}}/>
             <div className="absolute hidden lg:block bottom-5 -left-25 size-19 opacity-10 rounded-md" style={{backgroundColor: theme.colors.blue[5]}}/>
             <div className="absolute hidden lg:block top-10 -right-10 size-75 opacity-10 rounded-md" style={{backgroundColor: theme.colors.blue[5]}}/>
           </Flex>
         </Flex>
-        {/* <Image src={'/images/hero-template.png'} alt="hero-template" maw={{base: '100%', md: 625}} w={'100%'}/> */}
       </Flex>
     </section>
   )
