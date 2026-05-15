@@ -1,8 +1,9 @@
 import { Box, Flex, Grid, Image, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core"
 import { GridIcon } from "~/utils/icons"
 import { MainCTA } from "../Action/CTAButtons";
+import type { CollaborationProps } from "~/utils/interface";
 
-const CTASection: React.FC<{}> = () => {
+const CTASection: React.FC<CollaborationProps> = ({title, description, availability}) => {
 
   const theme = useMantineTheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
@@ -21,13 +22,13 @@ const CTASection: React.FC<{}> = () => {
           <Flex direction={'column'} className="z-10" justify={'center'} align={'center'} py={50} gap={40}>
             <Flex bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.gray[0]}`} p={5} px={15} bdrs={'xl'} align={'center'} gap={6} mb={20}>
               <span className="relative flex size-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-700 opacity-75"></span>
-                <span className="relative inline-flex size-2 rounded-full bg-green-700"></span>
+                <span className={`absolute inline-flex h-full w-full animate-ping rounded-full bg-${availability.classColor} opacity-75`}></span>
+                <span className={`relative inline-flex size-2 rounded-full bg-${availability.classColor}`}></span>
               </span>
-              <Text size="sm">{'Available for new projects '}</Text>
+              <Text id="collab-availability" size="sm">{availability.label}</Text>
             </Flex>
-            <h2 className="text-6xl text-center" style={{color: computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5] }}>{'Have a project in mind?'}</h2>
-            <Text ta={'center'}>{'I’m always open to collaborating on meaningful products and solving complex problems together.'}</Text>
+            <h2 id="collab-title" className="text-6xl text-center" style={{color: computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5] }}>{title}</h2>
+            <Text id="collab-description" ta={'center'}>{description}</Text>
             <MainCTA size="lg"/>
           </Flex>
         </Flex>

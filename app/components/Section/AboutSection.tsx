@@ -1,37 +1,33 @@
 import { Box, Button, Card, Chip, Collapse, Flex, Grid, Image, Pill, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
-import { aboutItems } from "~/utils/constant"
+import { aboutItems, iconMap } from "~/utils/constant"
 import { BranchIcon, GradIcon, SuitcaseIcon } from "~/utils/icons"
-import type { AboutItemsProps } from "~/utils/interface"
+import type { AboutItemsProps, AboutMetricProps, AboutProps } from "~/utils/interface"
 import { MainCTA } from "../Action/CTAButtons"
 
-const MetricComponent: React.FC<{
-  title: string,
-  description: string,
-  icon: React.ReactNode
-}> = ({title, description, icon}) => {
+const MetricComponent: React.FC<AboutMetricProps & {index: number}> = ({title, description, icon, index}) => {
   return (
-    <Flex gap={'sm'} direction={'column'}>
+    <Flex id={`metric-item-${index}`} gap={'sm'} direction={'column'}>
       <Text fz={36} fw={'bold'}>{title}</Text>
-      <Flex gap={'xs'}>
-        {icon}
+      <Flex gap={'xs'}>        
+        {iconMap[icon]} 
         <Text fz={'lg'}>{description}</Text>
       </Flex>
     </Flex>
   )
 }
 
-const AboutItemCard: React.FC<{item: AboutItemsProps}> = ({item}) => {
+const AboutItemCard: React.FC<{item: AboutItemsProps, index: number}> = ({item, index}) => {
   const theme = useMantineTheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 
   const [expanded, { toggle }] = useDisclosure(false);
   
   return (
-    <Card p={'md'} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={expanded ? '100%' : 'auto'} display={'flex'} className="flex-col gap-6 justify-start"
+    <Card id={`feature-item-${index}`} p={'md'} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={expanded ? '100%' : 'auto'} display={'flex'} className="flex-col gap-6 justify-start"
       style={{boxShadow: `0px 2px 10px 6px ${computedColorScheme === 'dark' ? 'rgba(3, 84, 166, 0.08)' : 'rgba(1, 17, 33, 0.04)'}`}}>
       <Flex w={52} h={52} p={'xs'} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} bdrs={'md'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
-        {item.icon}  
+        {iconMap[item.icon]} 
       </Flex> 
       <Text fz={24} fw={'bold'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{item.title}</Text>
       <Text className={`${!expanded ? 'line-clamp-3' : ''}`}>{item.description}</Text>
@@ -53,7 +49,7 @@ const AboutItemCard: React.FC<{item: AboutItemsProps}> = ({item}) => {
     </Card>
   )
 }
-const AboutSection: React.FC<{}> = () => {
+const AboutSection: React.FC<AboutProps> = ({title, description, image, metricItems, aboutItems }) => {
   const theme = useMantineTheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
   
@@ -66,17 +62,19 @@ const AboutSection: React.FC<{}> = () => {
         <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40, lg: 60}} pt={{base: 40, md: 80}} pb={{base: 20, md: 40}}>
           <Flex direction={'row'} align={'center'} gap={60}>
             <Box w={456} h={456} p={'sm'} bg={'#FFFFFF1A'} bdrs={24} visibleFrom="md">
-              <Image src="/images/hero.png" alt="about-image" w={428} h={428} bdrs={20}/>
+              <Image src={image} alt="about-image" w={428} h={428} bdrs={20}/>
             </Box>
             <Flex flex={`1`} c="white" direction={'column'} gap={{base: 40, lg: 60}}>
               <Flex direction={'column'} gap={20}>
-                <h2 className="text-4xl font-bold">{'About Me'}</h2>
-                <Text>{`Since beginning my journey as a software engineer over 20 years ago, I’ve built scalable solutions across AI, fintech, and health tech. I’ve led engineering for high-growth platforms, founded a successful enterprise-grade product, and consistently bridged the gap between complex architecture and business growth. I’m a technical leader who values mentorship, thrives on engineering precision, and is perpetually focused on shipping great craft at scale.`}</Text>
+                <h2 id="about-title" className="text-4xl font-bold">{title}</h2>
+                <Text id="about-description">{description}</Text>
               </Flex>
               <Flex gap={40} direction={{base: 'column', sm: 'row'}}>
-                <MetricComponent title="20+" description="Years of Experience" icon={<SuitcaseIcon/>}/>
-                <MetricComponent title="80+" description="Project Completed" icon={<BranchIcon/>}/>
-                <MetricComponent title="100+" description="Successful Mentorships" icon={<GradIcon/>}/>
+                {metricItems.map((item, index) => {
+                  return (
+                    <MetricComponent index={index} key={index} title={item.title} description={item.description} icon={item.icon}/>
+                  )
+                })}
               </Flex>
             </Flex>
           </Flex>
@@ -85,7 +83,7 @@ const AboutSection: React.FC<{}> = () => {
               aboutItems.map((item, index) => {
                 return (
                   <Grid.Col key={index} span={{base: 12, md: 6, lg: 3}}>
-                    <AboutItemCard item={item}/>
+                    <AboutItemCard index={index} item={item}/>
                   </Grid.Col>
                 )
               })
