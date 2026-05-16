@@ -1,5 +1,5 @@
 import { BrainIcon, BranchIcon, CodeIcon, GithubIcon, GradIcon, LaptopCodeIcon, LightIcon, LinkedInIcon, RocketIcon, SuitcaseIcon, TeachIcon, XIcon } from "./icons";
-import type { AboutItemsProps, AboutMetricProps, AvailabilityProps, IconKey, NavigationItemProps, ServicesItemsProps, SocialLinksProps, TestimonialItemProps, TestimonialProps, TrustyBrandPlacement, TrustyBrandProps, WritingItemsProps } from "./interface";
+import type { AboutItemsProps, AboutMetricProps, AvailabilityProps, CompaniesProps, ExperienceProps, IconKey, NavigationItemProps, ServicesItemsProps, SkillGroupProps, SocialLinksProps, TestimonialItemProps, TestimonialProps, TrustyBrandPlacement, TrustyBrandProps, WritingItemsProps } from "./interface";
 
 export const iconMap: Record<IconKey, React.ReactNode> = {
   linkedin: <LinkedInIcon />,
@@ -81,4 +81,93 @@ export const testimonials: TestimonialItemProps[] = [
 export const availability: AvailabilityProps[] = [
   {id: 0, label: 'Available for new projects', classColor: 'green'},
   {id: 1, label: 'Not available for new projects', classColor: 'red'},
+]
+
+export const skillGroup: SkillGroupProps = {
+  "Engineering": ['TypeScript','JavaScript','Python','C#','Node.js','.NET','React','Vue.js',],
+  "Cloud & Data": ['AWS','Azure','Serverless','CI/CD','Docker','MySQL','MongoDB'],
+  "Systems & AI": ['System Design','Microservices','Distributed Systems','API Design','LLM Integration','Automation']
+}
+
+export const experiences: ExperienceProps[] = [
+  {
+      startDate: 'July 2024',
+      endDate: 'Present', 
+      company: 'Undetectable AI', 
+      position: 'Technical Lead', 
+      icon: '/images/brands/undetectable.png', 
+      bulletpoints: [
+          `Led architecture and engineering of Undetectable AI’s content detection platform, powered by LLMs (Large Language Models) and real-time classification systems`,
+          `Scaled the platform from 50,000 to 500,000+ requests per day by optimizing backend infrastructure, improving caching layers, and integrating async processing`,
+          `Collaborated closely with product and growth teams to align technical roadmap with business goals`,
+          `Full-stack contributions across React, TypeScript, Python, and cloud-native services`,
+          `Introduced observability tooling and CI/CD pipelines to reduce deploy times and enhance platform resilience`
+      ]
+  },
+  {
+      startDate: 'July 2024',
+      endDate: 'Present', 
+      company: 'TruthScan', 
+      position: 'Technical Lead', 
+      icon: '/images/brands/truthscan.png', 
+      shortDescription: 'Built and launched a SaaS product from the ground up.', 
+      bulletpoints: [
+          `Developed full-stack architecture and APIs`,
+          `Led product direction and technical strategy`,
+          `Deployed scalable cloud infrastructure`,
+      ]
+  },
+  {
+      startDate: 'Sep 2018',
+      endDate: 'Present', 
+      company: 'Barcode Essentials', 
+      position: 'Founder/Technical Lead', 
+      icon: '/images/brands/barcode.png', 
+      shortDescription: 'Barcode Essentials for Symantec Management Platform gives you instant access to your favourite asset management workflows on your iPhone, iPad, iPad mini or iPod touch. Just login, sync and go.', 
+  },
+  {
+      startDate: '2010',
+      endDate: 'Present', 
+      position: 'Technical Lead / Software Engineer', 
+      shortDescription: `Led engineering teams and delivered scalable software solutions across multiple industries. Focused on system architecture, performance, and long-term maintainability.`, 
+      bulletpoints: [
+          `Designed and built scalable systems using modern full-stack technologies`,
+          `Led teams using Agile/Scrum methodologies`,
+          `Improved system performance and reliability across projects`,
+          `Collaborated with product and business stakeholders`,
+      ]
+  },
+  {
+      startDate: '2018',
+      endDate: 'Present', 
+      company: 'Barcode Essentials', 
+      position: 'Founder',
+      shortDescription: 'Built and launched a SaaS product from the ground up.', 
+      bulletpoints: [
+          `Developed full-stack architecture and APIs`,
+          `Led product direction and technical strategy`,
+          `Deployed scalable cloud infrastructure`,
+      ]
+  },
+  {
+      startDate: '2016',
+      endDate: 'Present', 
+      position: 'Mentor / Coach', 
+      shortDescription: 'Helping developers grow into senior and leadership roles.', 
+      bulletpoints: [
+          `Mentored engineers on system design and best practices`,
+          `Provided career guidance and technical coaching`,
+          `Conducted code reviews and real-world problem solving`,
+      ]
+  },
+]
+
+export const companyCollabs: CompaniesProps[] = [
+  {logo: '/images/brands/undetectable-logo.png', link: '#'},
+  {logo: '/images/brands/truthscan-logo.png', link: '#'},
+  {logo: '/images/brands/barcode-logo.png', link: '#'},
+  {logo: '/images/brands/sonder-logo.png', link: '#'},
+  {logo: '/images/brands/dash-logo.png', link: '#'},
+  {logo: '/images/brands/sandstone-logo.png', link: '#'},
+  {logo: '/images/brands/ubs-logo.png', link: '#'},
 ]

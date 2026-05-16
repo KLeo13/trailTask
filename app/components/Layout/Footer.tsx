@@ -1,6 +1,6 @@
 import { Box, Divider, Image, Text } from "@mantine/core"
 import { Link, NavLink } from "react-router"
-import { navigationItems, socialLinks } from "~/utils/constant"
+import { iconMap, navigationItems, socialLinks } from "~/utils/constant"
 
 const Footer: React.FC<{}> = () => {
   return (
@@ -31,7 +31,7 @@ const Footer: React.FC<{}> = () => {
             {socialLinks.map((link, index) => {
               return (
                 <Link to={link.to} key={index}>
-                  {link.icon}
+                  {iconMap[link.icon]}
                 </Link>
               )
             })}

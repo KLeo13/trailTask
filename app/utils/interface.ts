@@ -114,4 +114,38 @@ export type CollaborationProps = {
   description: string,
   availability: AvailabilityProps
 }
+export type SkillGroupProps = Record<string, string[]>;
+export type AboutHeaderProps = {
+  title: string,
+  heroImage: string,
+  roles: string | string[],
+  description: string,
+  skillGroup: SkillGroupProps,
+  socialLinks: SocialLinksProps[]
+}
+export type ExperienceProps = {
+  startDate: string,
+  endDate: string,
+  company?: string,
+  position: string,
+  icon?: string,
+  shortDescription?: string,
+  bulletpoints?: string[],
+}
+export type ExperienceContentProps = {
+  title: string,
+  description: string,
+  experiences: ExperienceProps[],
+  metricItems: AboutMetricProps[]
+}
+export type GroupExperiences = Record<string, ExperienceProps[]>
+export type CompaniesProps = {
+  logo: string,
+  link: string
+}
+
+export type CompanyCollabContentProps = {
+  title: string,
+  companies: CompaniesProps[]
+}
 
