@@ -7,8 +7,9 @@ import { useDisclosure } from "@mantine/hooks";
 
 const NavigationContent: React.FC<{}> = ({}) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
   const { toggleColorScheme } = useMantineColorScheme()
+
   return (
     <>
       <ActionIcon onClick={() => toggleColorScheme()} bg="transparent" 
@@ -35,7 +36,7 @@ const NavigationContent: React.FC<{}> = ({}) => {
 const NavigationBar: React.FC<{}> = () => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   const [expanded, { toggle }] = useDisclosure(false);
 
@@ -49,7 +50,7 @@ const NavigationBar: React.FC<{}> = () => {
         <Flex className="gap-6 items-center" visibleFrom="sm">
           <NavigationContent/>
         </Flex>
-        <ActionIcon className="block md:!hidden" onClick={toggle} size={'xl'} c="inherit" bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.blue[0]}`}>
+        <ActionIcon className="block md:hidden!" onClick={toggle} size={'xl'} c="inherit" bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.blue[0]}`}>
           <BarsIcon/>
         </ActionIcon>
       </Box>

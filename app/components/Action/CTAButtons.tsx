@@ -8,7 +8,7 @@ export const MainCTA: React.FC<{
   const pSize = size == 'sm' ? 8 : size == 'md' ? 12 : 16
   const textSize = size == 'sm' ? 'xs' : size == 'md' ? 'sm' : 'md'
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
     <Button
@@ -29,7 +29,7 @@ export const DownloadCTA: React.FC<{
   const pSize = size == 'sm' ? 8 : size == 'md' ? 12 : 16
   const textSize = size == 'sm' ? 'xs' : size == 'md' ? 'sm' : 'md'
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
     <Button

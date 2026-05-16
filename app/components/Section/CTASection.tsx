@@ -6,7 +6,7 @@ import type { CollaborationProps } from "~/utils/interface";
 const CTASection: React.FC<CollaborationProps> = ({title, description, availability}) => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
       <section className="p-10 md:p-20" style={{
@@ -21,10 +21,10 @@ const CTASection: React.FC<CollaborationProps> = ({title, description, availabil
           </Box>
           <Flex direction={'column'} className="z-10" justify={'center'} align={'center'} py={50} gap={40}>
             <Flex bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.gray[0]}`} p={5} px={15} bdrs={'xl'} align={'center'} gap={6} mb={20}>
-              <span className="relative flex size-2">
-                <span className={`absolute inline-flex h-full w-full animate-ping rounded-full bg-${availability.classColor} opacity-75`}></span>
-                <span className={`relative inline-flex size-2 rounded-full bg-${availability.classColor}`}></span>
-              </span>
+              <Box className="relative flex size-2">
+                <Box className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75`} bg={availability.classColor}></Box>
+                <Box className={`relative inline-flex size-2 rounded-full`} bg={availability.classColor}></Box>
+              </Box>
               <Text id="collab-availability" size="sm">{availability.label}</Text>
             </Flex>
             <h2 id="collab-title" className="text-6xl text-center" style={{color: computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5] }}>{title}</h2>

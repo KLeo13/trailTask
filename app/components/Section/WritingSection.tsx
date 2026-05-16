@@ -4,7 +4,7 @@ import type { WritingItemsProps, WritingsProps } from "~/utils/interface";
 
 const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', index: number}> = ({item, type = 'main', index}) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
   return (
     <Card id={`article-item-${index}`} p={"md"} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={"100%"} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} c="inherit">
       <Flex direction={{base: 'column', xs: type === 'main' ? 'column' : 'row'}} gap={'sm'}>
@@ -25,7 +25,7 @@ const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', in
 const WritingSection: React.FC<WritingsProps> = ({title, description, writingItems}) => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
     <section className="" style={{

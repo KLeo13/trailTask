@@ -1,31 +1,33 @@
 import { Card, Flex, Grid, List, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core";
 import { iconMap, servicesItems } from "~/utils/constant";
 import type { ServiceProps, ServicesItemsProps } from "~/utils/interface";
+import SecondaryCard from "../Template/Cards/SecondaryCard";
 const ServiceCard: React.FC<{item: ServicesItemsProps, index: number}> = ({item, index}) => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
-    <Card id={`service-item-${index}`} c={'inherit'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[0]} bdrs={'md'} p={'lg'} shadow="sm" display={'flex'} className="flex-col gap-5 h-full">
-      <Flex w={52} h={52} p={'xs'} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[6]} bdrs={'md'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : 'white'}>
-        {iconMap[item.icon]} 
-      </Flex> 
-      <Text fz={24} fw={'bold'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{item.title}</Text>
-      <Text>{item.description}</Text>
-      <List listStyleType="disc" c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
-        {item.list.map((listItem, index) => {
-          return (
-            <List.Item key={index}>{listItem}</List.Item>
-          )
-        })}
-      </List>
-    </Card>
+    <SecondaryCard id={`service-item-${index}`}
+      icon={item.icon}
+      title={item.title}
+      description={item.description}
+      extraContent={
+        <>
+          <List listStyleType="disc" c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
+            {item.list.map((listItem, index) => {
+              return (
+                <List.Item key={index}>{listItem}</List.Item>
+              )
+            })}
+          </List>
+      </>
+      }/>
   )
 }
 const ServicesSection: React.FC<ServiceProps> = ({title, description, serviceItems}) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
     <section className="" style={{

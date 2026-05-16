@@ -14,8 +14,7 @@ const HeroSection: React.FC<HeroProps> = ({
 }) => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
-  
+  const computedColorScheme = useComputedColorScheme('light');
   return (
     <section className="py-20">
       <Flex direction={{ base: 'column', md: 'row',}} maw={1440} mx={'auto'} px={{base: 20, md: 40}} gap={40} justify={"space-between"} align={'stretch'}>
