@@ -79,6 +79,6 @@ export const testimonials: TestimonialItemProps[] = [
 ]
 
 export const availability: AvailabilityProps[] = [
-  {id: 0, label: 'Available for new projects', classColor: 'green-700'},
-  {id: 1, label: 'Not available for new projects', classColor: 'red-700'},
+  {id: 0, label: 'Available for new projects', classColor: 'green'},
+  {id: 1, label: 'Not available for new projects', classColor: 'red'},
 ]
