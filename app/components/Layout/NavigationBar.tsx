@@ -7,8 +7,9 @@ import { useDisclosure } from "@mantine/hooks";
 
 const NavigationContent: React.FC<{}> = ({}) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
   const { toggleColorScheme } = useMantineColorScheme()
+
   return (
     <>
       <ActionIcon onClick={() => toggleColorScheme()} bg="transparent" 
@@ -35,7 +36,7 @@ const NavigationContent: React.FC<{}> = ({}) => {
 const NavigationBar: React.FC<{}> = () => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   const [expanded, { toggle }] = useDisclosure(false);
 

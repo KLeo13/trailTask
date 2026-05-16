@@ -6,7 +6,7 @@ import type { CollaborationProps } from "~/utils/interface";
 const CTASection: React.FC<CollaborationProps> = ({title, description, availability}) => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
       <section className="p-10 md:p-20" style={{

@@ -12,7 +12,7 @@ import { useLoaderData } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Jake Sta. Teresa | Portfolio" },
+    { title: "Portfolio | Jake Sta. Teresa" },
     { name: "description", content: "20+ years building scalable, user-centric products across AI, fintech, health tech, and enterprise." },
   ];
 }

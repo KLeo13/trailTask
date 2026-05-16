@@ -7,10 +7,10 @@ import HalfBox from "../Template/HalfBox";
 const ItemCard: React.FC<{item: TestimonialItemProps}> = ({item}) => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (    
-    <Card p={'md'} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={'100%'} display={'flex'} className="flex-col gap-6 justify-start" c="inherit" shadow="sm">
+    <Card p={'md'} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={'100%'} display={'flex'} className="flex-col gap-6 justify-start" c="inherit" shadow="sm">
       <Flex gap="md">
         <Image src={item.avatar} w={50} h={50} bdrs={'100%'}/>
         <Box>
@@ -28,7 +28,7 @@ const ItemCard: React.FC<{item: TestimonialItemProps}> = ({item}) => {
 
 const TestimonialsSections: React.FC<TestimonialProps> = ({title, description, testimonialItems}) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
     <HalfBox mih={{base: 348, md: 400}}>

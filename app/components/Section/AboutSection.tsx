@@ -21,7 +21,7 @@ const MetricComponent: React.FC<AboutMetricProps & {index: number}> = ({title, d
 
 const AboutItemCard: React.FC<{item: AboutItemsProps, index: number}> = ({item, index}) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   const [expanded, { toggle }] = useDisclosure(false);
   
@@ -54,7 +54,7 @@ const AboutItemCard: React.FC<{item: AboutItemsProps, index: number}> = ({item, 
 }
 const AboutSection: React.FC<AboutProps> = ({title, description, image, metricItems, aboutItems }) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
   
   return (
     <>

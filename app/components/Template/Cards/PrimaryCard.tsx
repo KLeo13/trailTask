@@ -12,7 +12,7 @@ const PrimaryCard: React.FC<{
     collapsible?: boolean
 }> = ({id, icon, title, description, extraContent, collapsible}) => {
     const theme = useMantineTheme()
-    const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+    const computedColorScheme = useComputedColorScheme('light');
     const [expanded, { toggle }] = useDisclosure(collapsible ? false : true);
   
     return (

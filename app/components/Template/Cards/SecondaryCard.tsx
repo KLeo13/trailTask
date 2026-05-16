@@ -12,7 +12,7 @@ const SecondaryCard: React.FC<{
     id, icon, title, description, extraContent
 }) => {
     const theme = useMantineTheme()
-    const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+    const computedColorScheme = useComputedColorScheme('light');
 
     return (
         <Card id={id} c={'inherit'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[0]} bdrs={'md'} p={'lg'} shadow="sm" display={'flex'} className="flex-col gap-5 h-full">

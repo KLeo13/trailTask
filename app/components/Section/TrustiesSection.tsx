@@ -4,7 +4,7 @@ import type { TrustiesPops } from "~/utils/interface";
 const TrustiesSection: React.FC<TrustiesPops> = ({title, description, trustyBrands}) => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
   return (
       <section className="py-20 overflow-hidden" style={{backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[0]}}>
         <Flex direction={{lg: 'row', base: 'column'}} maw={1440} mx={'auto'} px={{base: 20, md: 40}} justify={"space-between"} align={'center'}>

@@ -5,7 +5,7 @@ const HalfBox: React.FC<{
     children: any
 }> = ({mih={base: 1027, md: 591, lg: 770}, children}) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
 return (
     <section className="relative z-10" style={{

@@ -5,7 +5,7 @@ import SecondaryCard from "../Template/Cards/SecondaryCard";
 const ServiceCard: React.FC<{item: ServicesItemsProps, index: number}> = ({item, index}) => {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
     <SecondaryCard id={`service-item-${index}`}
@@ -27,7 +27,7 @@ const ServiceCard: React.FC<{item: ServicesItemsProps, index: number}> = ({item,
 }
 const ServicesSection: React.FC<ServiceProps> = ({title, description, serviceItems}) => {
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return (
     <section className="" style={{

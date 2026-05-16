@@ -6,9 +6,10 @@ import Footer from "./components/Layout/Footer";
 export default function App() {
 
   const theme = useMantineTheme()
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme('light');
 
   return <>
+    {computedColorScheme}
     <AppShell
       bg={computedColorScheme === 'dark' ? theme.colors.darkBlue[0] : theme.white}
       c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>
