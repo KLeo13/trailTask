@@ -160,6 +160,7 @@ export type MentorSkillsProps = MentorDetailsProps & {
 export type MentorContentProps = {
   image: string,
   title: string,
+  subTitle?: string,
   description: string,
   details: MentorDetailsProps[],
   mentorSkills: {
@@ -199,4 +200,25 @@ export type FAQContentProps = {
   title: string,
   description: string,
   faqs: FAQ[]
+}
+
+export type WorkGuideProps = MentorDetailsProps
+export type WorkHeaderProps = Omit<MentorHeaderProps, "mentorGuides"> & {
+  workerGuideTitle: string,
+  workGuides: WorkGuideProps[]
+}
+export type WorkerDetails = Omit<MentorContentProps, "mentorSkills" | "details"> & {
+  workerSkills: string[],
+  workerMetric: AboutMetricProps[]
+}
+export type WorkPhaseProps = {
+  number: number,
+  icon: IconKey,
+  title: string,
+  description: string
+}
+export type WorkPhaseContentProps = {
+  title: string,
+  description: string,
+  phases: WorkPhaseProps[]
 }
