@@ -48,7 +48,7 @@ const WorkPhaseSection: React.FC<WorkPhaseContentProps> = ({
                 </Stack>
                 <Flex gap={'xl'} direction={{base: 'column', sm: 'row'}}>
                     {phases.map((ph, index) => {
-                        return <Box flex={1}><WorkPhaseCard key={index} {...ph}/></Box>
+                        return <Box key={index} flex={1}><WorkPhaseCard {...ph}/></Box>
                     })}
                 </Flex>
             </Flex>

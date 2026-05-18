@@ -34,8 +34,8 @@ const WorkContentSection: React.FC<WorkerDetails> = ({
                         <Flex gap={'xl'} direction={{base: 'column', sm: 'row'}}>
                             {
                                 workerMetric.map((metric, index) => 
-                                    <Box flex={1}>
-                                        <MetricCard {...metric} key={index} type="primary"/>
+                                    <Box flex={1} key={index}>
+                                        <MetricCard {...metric} type="primary"/>
                                     </Box>
                                 )
                             }
