@@ -1,7 +1,7 @@
 import { Box, Button, Card, Flex, Image, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core"
 import CustomCarousel from "../Plugins/Carousel"
 import type { TestimonialItemProps, TestimonialProps } from "~/utils/interface";
-import { testimonials } from "~/utils/constant";
+import { iconMap, testimonials } from "~/utils/constant";
 import HalfBox from "../Template/HalfBox";
 
 const ItemCard: React.FC<{item: TestimonialItemProps}> = ({item}) => {
@@ -12,13 +12,15 @@ const ItemCard: React.FC<{item: TestimonialItemProps}> = ({item}) => {
   return (    
     <Card p={'md'} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={'100%'} display={'flex'} className="flex-col gap-6 justify-start" c="inherit" shadow="sm">
       <Flex gap="md">
-        <Image src={item.avatar} w={50} h={50} bdrs={'100%'}/>
+        {item.avatar ? <Image src={item.avatar} w={50} h={50} bdrs={'100%'}/> : 
+          <Box w={50} h={50} c={computedColorScheme === 'dark' ? theme.colors.blue[5] : theme.colors.blue[6]}>{iconMap['avatar']}</Box>
+        }
         <Box>
           <Text fz="xl" c={computedColorScheme === 'dark' ? 'white' : 'black'}>{item.name}</Text>
-          <Text fz="sm">{item.position}</Text>
+          <Text fz="sm" >{item.position}</Text>
         </Box>
       </Flex>
-      <Text className="line-clamp-5">“{item.testimony}</Text>
+      <Text className="line-clamp-5" style={{whiteSpace: 'pre-line'}}>“{item.testimony}</Text>
       <Button display={'flex'} variant="transparent" p={0} fw={'normal'} mt={'auto'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
         {'Show more +'}
       </Button>

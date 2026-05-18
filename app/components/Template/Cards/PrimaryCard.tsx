@@ -6,11 +6,12 @@ import type { IconKey } from "~/utils/interface";
 const PrimaryCard: React.FC<{
     id?: string,
     icon: IconKey,
+    iconBg?: boolean,
     title: string,
     description: string,
     extraContent?: any,
     collapsible?: boolean
-}> = ({id, icon, title, description, extraContent, collapsible}) => {
+}> = ({id, icon, iconBg = true, title, description, extraContent, collapsible}) => {
     const theme = useMantineTheme()
     const computedColorScheme = useComputedColorScheme('light');
     const [expanded, { toggle }] = useDisclosure(collapsible ? false : true);
@@ -18,7 +19,7 @@ const PrimaryCard: React.FC<{
     return (
         <Card id={id} p={'md'} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={expanded ? '100%' : 'auto'} display={'flex'} className="flex-col gap-6 justify-start"
             style={{boxShadow: `0px 2px 10px 6px ${computedColorScheme === 'dark' ? 'rgba(3, 84, 166, 0.08)' : 'rgba(1, 17, 33, 0.04)'}`}}>
-            <Flex w={52} h={52} p={'xs'} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} bdrs={'md'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
+            <Flex w={52} h={52} p={'xs'} bg={iconBg ? computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1] : 'transparent'} bdrs={'md'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
                 {iconMap[icon]} 
             </Flex> 
             <Text fz={24} fw={'bold'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{title}</Text>

@@ -1,5 +1,6 @@
-import { BrainIcon, BranchIcon, CodeIcon, GithubIcon, GradIcon, LaptopCodeIcon, LightIcon, LinkedInIcon, RocketIcon, SuitcaseIcon, TeachIcon, XIcon } from "./icons";
-import type { AboutItemsProps, AboutMetricProps, AvailabilityProps, CompaniesProps, ExperienceProps, IconKey, NavigationItemProps, ServicesItemsProps, SkillGroupProps, SocialLinksProps, TestimonialItemProps, TestimonialProps, TrustyBrandPlacement, TrustyBrandProps, WritingItemsProps } from "./interface";
+import { CheckIcon } from "@mantine/core";
+import { AvatarIcon, BrainIcon, BranchIcon, CodeIcon, CommentIcon, GithubIcon, GradIcon, InquiryIcon, LaptopCodeIcon, LayerIcon, LightIcon, LinkedInIcon, PinIcon, RefreshIcon, RepairIcon, RibbonIcon, RocketIcon, ShapesIcon, SuitcaseIcon, TeachIcon, TimesIcon, XIcon } from "./icons";
+import type { AboutItemsProps, AboutMetricProps, AvailabilityProps, CompaniesProps, ExperienceProps, FAQ, IconKey, MentorDetailsProps, MentorPricing, MentorSkillsProps, NavigationItemProps, ServicesItemsProps, SkillGroupProps, SocialLinksProps, TestimonialItemProps, TestimonialProps, TrustyBrandPlacement, TrustyBrandProps, WritingItemsProps } from "./interface";
 
 export const iconMap: Record<IconKey, React.ReactNode> = {
   linkedin: <LinkedInIcon />,
@@ -14,6 +15,17 @@ export const iconMap: Record<IconKey, React.ReactNode> = {
   teach: <TeachIcon />,
   rocket: <RocketIcon />,
   laptop: <LaptopCodeIcon />,
+  refresh: <RefreshIcon />,
+  ribbon: <RibbonIcon />,
+  shapes: <ShapesIcon />,
+  layer: <LayerIcon />,
+  comment: <CommentIcon />,
+  pin: <PinIcon />,
+  repair: <RepairIcon />,
+  avatar: <AvatarIcon />,
+  inquiry: <InquiryIcon />,
+  check: <CheckIcon/>,
+  times: <TimesIcon/>
 };
 
 
@@ -81,6 +93,7 @@ export const testimonials: TestimonialItemProps[] = [
 export const availability: AvailabilityProps[] = [
   {id: 0, label: 'Available for new projects', classColor: 'green'},
   {id: 1, label: 'Not available for new projects', classColor: 'red'},
+  {id: 2, label: 'Available for mentorship', classColor: 'green'},
 ]
 
 export const skillGroup: SkillGroupProps = {
@@ -95,7 +108,10 @@ export const experiences: ExperienceProps[] = [
       endDate: 'Present', 
       company: 'Undetectable AI', 
       position: 'Technical Lead', 
-      icon: '/images/brands/undetectable.png', 
+      icon: {
+        dark: '/images/brands/undetectable-icon-light.png',
+        light: '/images/brands/undetectable-icon.png'
+      }, 
       bulletpoints: [
           `Led architecture and engineering of Undetectable AI’s content detection platform, powered by LLMs (Large Language Models) and real-time classification systems`,
           `Scaled the platform from 50,000 to 500,000+ requests per day by optimizing backend infrastructure, improving caching layers, and integrating async processing`,
@@ -109,7 +125,10 @@ export const experiences: ExperienceProps[] = [
       endDate: 'Present', 
       company: 'TruthScan', 
       position: 'Technical Lead', 
-      icon: '/images/brands/truthscan.png', 
+      icon: {
+        dark: '/images/brands/truthscan-icon-light.png',
+        light: '/images/brands/truthscan-icon.png'
+      }, 
       shortDescription: 'Built and launched a SaaS product from the ground up.', 
       bulletpoints: [
           `Developed full-stack architecture and APIs`,
@@ -122,7 +141,7 @@ export const experiences: ExperienceProps[] = [
       endDate: 'Present', 
       company: 'Barcode Essentials', 
       position: 'Founder/Technical Lead', 
-      icon: '/images/brands/barcode.png', 
+      icon: '/images/brands/barcode-icon.png', 
       shortDescription: 'Barcode Essentials for Symantec Management Platform gives you instant access to your favourite asset management workflows on your iPhone, iPad, iPad mini or iPod touch. Just login, sync and go.', 
   },
   {
@@ -163,11 +182,99 @@ export const experiences: ExperienceProps[] = [
 ]
 
 export const companyCollabs: CompaniesProps[] = [
-  {logo: '/images/brands/undetectable-logo.png', link: '#'},
-  {logo: '/images/brands/truthscan-logo.png', link: '#'},
-  {logo: '/images/brands/barcode-logo.png', link: '#'},
-  {logo: '/images/brands/sonder-logo.png', link: '#'},
-  {logo: '/images/brands/dash-logo.png', link: '#'},
-  {logo: '/images/brands/sandstone-logo.png', link: '#'},
-  {logo: '/images/brands/ubs-logo.png', link: '#'},
+  {logo: {dark: '/images/brands/undetectable-logo-light.png', light: '/images/brands/undetectable-logo.png'}, link: '#'},
+  {logo: {dark: '/images/brands/truthscan-logo-light.png', light: '/images/brands/truthscan-logo.png'}, link: '#'},
+  {logo: {dark: '/images/brands/barcode-logo-light.png', light: '/images/brands/barcode-logo.png'}, link: '#'},
+  {logo: {dark: '/images/brands/sonder-logo.png', light: '/images/brands/sonder-logo.png'}, link: '#'},
+  {logo: {dark: '/images/brands/dash-logo-light.png', light: '/images/brands/dash-logo.png'}, link: '#'},
+  {logo: {dark: '/images/brands/sandstone-logo.png', light: '/images/brands/sandstone-logo.png'}, link: '#'},
+  {logo: {dark: '/images/brands/ubs-logo-light.png', light: '/images/brands/ubs-logo.png'}, link: '#'},
+]
+
+export const mentorGuides: MentorDetailsProps[] = [
+  {icon: 'refresh', title: 'Switch Careers', description: `Coming from chemistry, law, or another field? You've come to the right place. Let's map your transition into software development.`},
+  {icon: 'rocket', title: 'Lead with Confidence', description: `Running a SaaS and struggling to manage remote teams? I can help you ensure your team delivers the right features with real quality.`},
+  {icon: 'ribbon', title: 'Own Your Promotion', description: `Just got promoted into a senior developer? I can help you manage expectations, lead with confidence, and step fully into your new role.`},
+  {icon: 'code', title: 'Level Up Your Engineering', description: `Looking to write cleaner, more maintainable code? I can help you apply architectural best practices and write software that scales.`},
+  {icon: 'shapes', title: 'Master Frontend Architecture', description: `Want to build highly interactive and accessible UIs? Let's refine your frontend workflows, component design, and UI implementation.`},
+  {icon: 'layer', title: 'Scale Your Systems', description: `Need to support long-term growth and high traffic? I can help you design robust, secure APIs and reliable backend infrastructure.`},
+]
+export const mentorDetails: MentorDetailsProps[] =[
+  {icon: 'comment', title: 'Speaks', description: `English, Spanish and Tagalog`},
+  {icon: 'pin', title: 'Location', description: `Australia`},
+]
+export const mentorSkills: MentorSkillsProps[] = [
+  {icon: 'repair', title: 'Engineering Foundations', description: `Build strong fundamentals with hands-on guidance across core technologies.`, skillsList: ['Server-side (Node.js, .NET, Serverless)', 'Frontend (React, Vue)', 'Mobile (Swift, Objective-C)', 'General programming (C#, JavaScript, Java, PHP)', 'Shell scripting']},
+  {icon: 'code', title: 'Code, Architecture & Quality', description: `Learn how to design and write software that scales and lasts.`, skillsList: ['Clean Code principles', 'Design patterns', 'Software design & UML', 'Components & frameworks', 'Unit & integration testing']},
+  {icon: 'suitcase', title: 'Career Growth & Mentorship', description: `Grow faster with practical advice and real-world engineering insight.`, skillsList: ['Productivity & developer workflows', 'Career guidance', 'Problem-solving mindset', 'Real-world decision making']}
+]
+
+export const plansPricing: MentorPricing[] = [
+  {label: 'Lite', rate: 180, uom: 'month', calls: 2, description: `Keep me on retainer. Schedule meetings when you need mentor advice.`, includes: [
+    {label: '2 calls + priority support', highlight: true, isChecked: true},
+    {label: 'Unlimited Q&A via chat', highlight: false, isChecked: true},
+    {label: 'Responses in 24 hours or less', highlight: false, isChecked: true},
+    {label: 'Hands-on support', highlight: false, isChecked: true},
+  ]},
+  {label: 'Standard', rate: 350, uom: 'month', calls: 4, description: `The most popular way to get mentored, let's work towards your goals!`, includes: [ 
+    {label: '4 calls + priority support', highlight: true, isChecked: true},
+    {label: 'Unlimited Q&A via chat', highlight: false, isChecked: true},
+    {label: 'Responses in 24 hours or less', highlight: false, isChecked: true},
+    {label: 'Hands-on support', highlight: false, isChecked: true},
+  ], mostPopular: true},
+  {label: 'Pro', rate: 600, uom: 'month', calls: 6, description: `Get the extra bit of support needed to reach your goals faster.`, includes: [
+    {label: '6 calls + priority support', highlight: true, isChecked: true},
+    {label: 'Unlimited Q&A via chat', highlight: false, isChecked: true},
+    {label: 'Responses in 24 hours or less', highlight: false, isChecked: true},
+    {label: 'Hands-on support', highlight: false, isChecked: true},
+  ]},
+]
+
+export const sessionPricing: MentorPricing[] = [
+  {label: 'Introductory Call', rate: 39, uom: 'session', description: `A quick introductory session to clarify your goals and next steps.`, includes: [
+    {label: '30 minutes', highlight: true, isChecked: true},
+    {label: 'High-level situation assessment', highlight: false, isChecked: true},
+    {label: 'Quick answers to your key question', highlight: false, isChecked: true},
+    {label: 'Direction and next-step guidance', highlight: false, isChecked: true},
+  ]},
+  {label: 'Expert Consultation', rate: 69, uom: 'session', description: `A focused session for direct, actionable help on issues.`, includes: [
+    {label: '30 minutes', highlight: true, isChecked: true},
+    {label: 'Targeted problem breakdown', highlight: false, isChecked: true},
+    {label: 'Practical solutions and recommendations', highlight: false, isChecked: true},
+    {label: 'Trade-off and approach guidance', highlight: false, isChecked: true},
+  ]},
+  {label: 'Ask me Anything', rate: 189, uom: 'session', description: `A deep-dive session to explore multiple topics.`, includes: [
+    {label: '60 minutes', highlight: true, isChecked: true},
+    {label: 'Multi-topic discussion', highlight: false, isChecked: true},
+    {label: 'System design / career / interview support', highlight: false, isChecked: true},
+    {label: 'Action plan or summary takeaway', highlight: false, isChecked: true},
+  ]},
+  {label: 'Deep Consultation', rate: 350, uom: 'session', description: `An intensive end-to-end session for strategic challenges.`, includes: [
+    {label: '60 minutes', highlight: true, isChecked: true},
+    {label: 'Full system or project deep dive', highlight: false, isChecked: true},
+    {label: 'Hands-on debugging or restructuring', highlight: false, isChecked: true},
+    {label: 'Execution plan with priorities', highlight: false, isChecked: true},
+  ]},
+]
+export const mentorShipTestimonials: TestimonialItemProps[] = [
+  {avatar: '/images/testimonial/Natalia.png', name: 'Natalia', position: 'Standard Plan • 1.5 years', testimony: `Jake is a good mentor, good teacher. He helps me a lot with understanding stuff and is always happy to help with my questions.`},
+  {avatar: '/images/testimonial/Matas.png', name: 'Matas', position: 'Lite Plan • 6 months', testimony: `Jake is an amazing mentor, who has helped me both with clarity regarding my career in tech, and actual improvement in the field.\nWhy Jake is a superhero:\n- Clear, concise, fast communication;\n- Flexibility in tools, approach, and problem-solving;\n- Deep knowledge in the field;\n- Enabler personality.`},
+  {name: 'Mustafa', position: 'Standard Plan • 10 months', testimony: `My mentorship with Jake continues to be a wonderful journey. I've been making strides all along, and the last month has been quite transformative. For the first time, I made an application without relying on tutorials. I look forward to achieving further milestones in the months ahead. As always, Jake is not just a mentor but a partner in success. He's always there to help in all kinds of ways. I'm truly grateful!`},
+  {name: 'Hao', position: 'Standard Plan • 9 months', testimony: `Jake is an experienced developer who has worked in different locations in the world and with different programming languages. He is so friendly and he cares a lot about his students. Jake made a easy-to-follow plan for me based on my background and he often monitors and make some changes about my plan according to my progress. He also gives me practice problems, with detailed solutions and feedbacks, to hone my skills. He always responds to my messages or questions in a timely manner.`},
+  {name: 'Phonlavath', position: 'Standard Plan • 2 months', testimony: `After graduating from university, I felt lost and lacked confidence in my coding skills, making it difficult for me to pursue a job in the industry. I was searching for help when I found Jake. He helped me rebuild my foundation and address my knowledge gaps. His tutorials were incredibly helpful in improving and refactoring my code, showing me how to do things better. Jake is an amazing mentor with deep industry knowledge, and he's also a kind person who truly understands you. Now, I know what I need to do to improve myself with tasks and goals that align with my path. I highly recommend him.`},
+  {name: 'Fabio', position: 'Standard Plan • 1 month ', testimony: `Jake has been great in his mentorship. He's been helping me fill my knowledge gaps in the backend development with the best practices in the industry, and guiding me with the required technologies to become a backend developer.\nJake is also very helpful with any questions you have, responding on the same day.\n\nI'm glad I found his mentorship.`},
+  {name: 'David', position: 'Standard Plan • 6 months', testimony: `I just wanted to say a little about Jake for those that might be looking for a mentor. Jake is a very talented senior dev who can break down complex problems and explain them. As a mentor, he has guided me in preparing for a web development career. We sat down and created a plan, then had weekly discussions on the completion of that plan. Whenever I have issues, he is just an instant message away with an explanation that makes sense. I highly recommend Jake to anyone looking to further their career!`},
+  {name: 'Shaunn', position: 'Standard Plan • 2 years', testimony: `Jake has been helped me fast track my skills and career in a way I didn't think was possible. I used to have knowledge gaps, but not anymore! Never felt more comfortable in this industry!`},
+  {name: 'Adham', position: 'Standard Plan • 7 months', testimony: `Jake has been excellent so far, he has intensive experience & is willing to help in any way possible. Since the first call, I have sensed his loyalty & passion for his work, to add on that he is a trustworthy guy. \n\nOther things Jake is good at are communication, dedication, skills & flexibility.`},
+  {name: 'Artur', position: 'Standard Plan • 8 months', testimony: `Jake is a very knowledgeable, highly experienced, and supportive mentor. We created a detailed plan for learning the front-end and getting a job. I am very satisfied with the progress I made in HTML/CSS/Javascript/React under the mentorship of Jake in last 2 months.`},
+  {name: 'Xiomara', position: 'Standard Plan • 3 months', testimony: `My mentorship with Jake, definitely has been very helpful during my initial months as a software engineer. Jake's experience is reflected on the advise and feedback provided by him during our mentorship. He is always available even to answer a question and very flexible when it came to needing help.`},
+  {name: 'Cds', position: 'Standard Plan • 7 months', testimony: `Jake is an exceptional mentor. He is patient and positive. Two values that you would always hope to find in a mentor. I highly recommend him to devs looking for support and guidance.`},
+]
+
+export const faqs: FAQ[] = [
+  {icon: 'inquiry', inquiry: `What goals can this mentorship help me achieve?`, answer: `The program is designed to help you switch careers into tech, lead with more confidence in your current role, or secure a promotion to a more senior position.`},
+  {icon: 'inquiry', inquiry: `What technical topics are covered in the curriculum?`, answer: `Mentorship covers engineering foundations (such as Data Structures and Algorithms), code architecture and quality (including system design and clean code), and general career growth strategies.`},
+  {icon: 'inquiry', inquiry: `How much does the 1-on-1 mentorship cost?`, answer: `There are three main pricing tiers: Lite at $180/month, Standard at $350/month, and Pro at $800/month.`},
+  {icon: 'inquiry', inquiry: `What is the difference between the Lite and Standard plans?`, answer: `While both include 1-on-1 sessions and chat support, the Standard plan offers bi-weekly sessions compared to the monthly sessions in the Lite plan, and it also includes additional features like code reviews and priority support.`},
+  {icon: 'inquiry', inquiry: `Is there support for more senior developers?`, answer: `Yes, the "Pro" plan is specifically designed for those looking for executive-level coaching and high-touch mentorship for advanced career moves.`},
 ]

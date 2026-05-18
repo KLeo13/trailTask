@@ -1,11 +1,12 @@
 import AboutHeaderSection from "~/components/Section/AboutHeaderSection";
 import type { Route } from "./+types/about";
-import { companyCollabs, experiences, metricItems, skillGroup, socialLinks, testimonials } from "~/utils/constant";
+import { availability, companyCollabs, experiences, metricItems, skillGroup, socialLinks, testimonials } from "~/utils/constant";
 import { useLoaderData } from "react-router";
-import type { AboutHeaderProps, CompaniesProps, CompanyCollabContentProps, ExperienceContentProps, ExperienceProps, TestimonialProps } from "~/utils/interface";
+import type { AboutHeaderProps, CollaborationProps, CompaniesProps, CompanyCollabContentProps, ExperienceContentProps, ExperienceProps, TestimonialProps } from "~/utils/interface";
 import ExperienceSection from "~/components/Section/ExperienceSection";
 import TestimonialsSections from "~/components/Section/TestimonialsSections";
 import CompanyCollabsSection from "~/components/Section/CompanyCollabSection";
+import CTASection from "~/components/Section/CTASection";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -40,22 +41,29 @@ export async function loader(){
             description: `What colleagues and clients say about working with me:`,
             testimonialItems: testimonials,
         },
+        collabData: {
+            title: `Have a project in mind?`,
+            description: `I’m always open to collaborating on meaningful products and solving complex problems together.`,
+            availability: availability[0],
+        }
     }
 
     return aboutData
 }
-export default function Home() {
+export default function About() {
 
-    const { heroData, experienceData, companiesData, testimonialsData } = useLoaderData() as {
+    const { heroData, experienceData, companiesData, testimonialsData, collabData } = useLoaderData() as {
         heroData: AboutHeaderProps,
         experienceData: ExperienceContentProps,
         companiesData: CompanyCollabContentProps,
         testimonialsData: TestimonialProps,
+        collabData: CollaborationProps
     }
     return <>
         <AboutHeaderSection {...heroData}/>
         <ExperienceSection {...experienceData}/>
         <CompanyCollabsSection {...companiesData}/>
         <TestimonialsSections {...testimonialsData}/>
+        <CTASection {...collabData} />
     </>
 }
