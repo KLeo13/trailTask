@@ -1,6 +1,6 @@
 import { CheckIcon } from "@mantine/core";
-import { AvatarIcon, BrainIcon, BranchIcon, CodeIcon, CommentIcon, GithubIcon, GradIcon, InquiryIcon, LaptopCodeIcon, LayerIcon, LightIcon, LinkedInIcon, PinIcon, RefreshIcon, RepairIcon, RibbonIcon, RocketIcon, ShapesIcon, SuitcaseIcon, TeachIcon, TimesIcon, XIcon } from "./icons";
-import type { AboutItemsProps, AboutMetricProps, AvailabilityProps, CompaniesProps, ExperienceProps, FAQ, IconKey, MentorDetailsProps, MentorPricing, MentorSkillsProps, NavigationItemProps, ServicesItemsProps, SkillGroupProps, SocialLinksProps, TestimonialItemProps, TestimonialProps, TrustyBrandPlacement, TrustyBrandProps, WritingItemsProps } from "./interface";
+import { AppleIcon, AvatarIcon, BrainIcon, BranchIcon, CodeIcon, CommentIcon, EmailIcon, GithubIcon, GradIcon, InquiryIcon, LaptopCodeIcon, LayerIcon, LightIcon, LinkedInIcon, PinIcon, RefreshIcon, RepairIcon, RibbonIcon, RocketIcon, ShapesIcon, SuitcaseIcon, TeachIcon, TimesIcon, ToolsIcon, XIcon } from "./icons";
+import type { AboutItemsProps, AboutMetricProps, AvailabilityProps, CompaniesProps, ExperienceProps, FAQ, IconKey, MentorDetailsProps, MentorPricing, MentorSkillsProps, NavigationItemProps, ServicesItemsProps, SkillGroupProps, SocialLinksProps, TestimonialItemProps, TestimonialProps, TrustyBrandPlacement, TrustyBrandProps, WorkerDetails, WorkHeaderProps, WorkPhaseProps, WritingItemsProps } from "./interface";
 
 export const iconMap: Record<IconKey, React.ReactNode> = {
   linkedin: <LinkedInIcon />,
@@ -25,7 +25,10 @@ export const iconMap: Record<IconKey, React.ReactNode> = {
   avatar: <AvatarIcon />,
   inquiry: <InquiryIcon />,
   check: <CheckIcon/>,
-  times: <TimesIcon/>
+  times: <TimesIcon/>,
+  apple: <AppleIcon/>,
+  email: <EmailIcon/>,
+  tools: <ToolsIcon/>
 };
 
 
@@ -204,7 +207,7 @@ export const mentorDetails: MentorDetailsProps[] =[
   {icon: 'pin', title: 'Location', description: `Australia`},
 ]
 export const mentorSkills: MentorSkillsProps[] = [
-  {icon: 'repair', title: 'Engineering Foundations', description: `Build strong fundamentals with hands-on guidance across core technologies.`, skillsList: ['Server-side (Node.js, .NET, Serverless)', 'Frontend (React, Vue)', 'Mobile (Swift, Objective-C)', 'General programming (C#, JavaScript, Java, PHP)', 'Shell scripting']},
+  {icon: 'tools', title: 'Engineering Foundations', description: `Build strong fundamentals with hands-on guidance across core technologies.`, skillsList: ['Server-side (Node.js, .NET, Serverless)', 'Frontend (React, Vue)', 'Mobile (Swift, Objective-C)', 'General programming (C#, JavaScript, Java, PHP)', 'Shell scripting']},
   {icon: 'code', title: 'Code, Architecture & Quality', description: `Learn how to design and write software that scales and lasts.`, skillsList: ['Clean Code principles', 'Design patterns', 'Software design & UML', 'Components & frameworks', 'Unit & integration testing']},
   {icon: 'suitcase', title: 'Career Growth & Mentorship', description: `Grow faster with practical advice and real-world engineering insight.`, skillsList: ['Productivity & developer workflows', 'Career guidance', 'Problem-solving mindset', 'Real-world decision making']}
 ]
@@ -277,4 +280,25 @@ export const faqs: FAQ[] = [
   {icon: 'inquiry', inquiry: `How much does the 1-on-1 mentorship cost?`, answer: `There are three main pricing tiers: Lite at $180/month, Standard at $350/month, and Pro at $800/month.`},
   {icon: 'inquiry', inquiry: `What is the difference between the Lite and Standard plans?`, answer: `While both include 1-on-1 sessions and chat support, the Standard plan offers bi-weekly sessions compared to the monthly sessions in the Lite plan, and it also includes additional features like code reviews and priority support.`},
   {icon: 'inquiry', inquiry: `Is there support for more senior developers?`, answer: `Yes, the "Pro" plan is specifically designed for those looking for executive-level coaching and high-touch mentorship for advanced career moves.`},
+]
+
+export const workGuides: MentorDetailsProps[] = [
+  {icon: 'refresh', title: 'Scale Systems', description: 'Need to scale without compromising quality? I design scalable, maintainable systems that support real-world growth.'},
+  {icon: 'rocket', title: 'Launch With Impact', description: 'Struggling to connect code to business strategy? I help you blend product thinking and strategy to launch successful products.'},
+  {icon: 'ribbon', title: 'Innovate With AI', description: 'Want to automate with AI but unsure where to start? I integrate intelligent solutions that enhance functionality and drive engagement.'},
+  {icon: 'apple', title: 'Focus on Growth', description: 'Looking to level up your skills or scale your team? I provide the practical, real-world guidance you need to lead with confidence.'},
+]
+
+
+export const workPhase: WorkPhaseProps[] = [
+  {number: 1, icon: 'email', title: 'Send an email', description: 'Tell me about your project or idea.'},
+  {number: 2, icon: 'light', title: 'Alignment', description: 'We define the right approach and technical direction.'},
+  {number: 3, icon: 'repair', title: 'Build and improve', description: 'Develop, refine, and scale the solution.'},
+]
+
+export const workfaqs: FAQ[] = [
+  {icon: 'inquiry', inquiry: `What core services are offered for new businesses?`, answer: `The page offers MVP & Startup App Development, which includes strategy, scope validation, rapid prototyping, and user testing to help launch and grow your idea.`},
+  {icon: 'inquiry', inquiry: `Can you help integrate AI into my existing or new applications?`, answer: `Yes, there is a specific service for AI-Powered App Development that covers AI strategy, custom model development, and integrating AI into existing systems.`},
+  {icon: 'inquiry', inquiry: `Do you develop apps for both iOS and Android?`, answer: `Yes, through Cross-Platform App Development, apps are built for multiple platforms from a single codebase, which can result in up to 40% cost savings.`},
+  {icon: 'inquiry', inquiry: `What is the step-by-step process for starting a project?`, answer: `The process follows a three-phase "How It Works" model: first, you send an email with your project idea; second, an alignment phase to discuss details; and third, the "Build and Improve" phase where the project is executed.`},
 ]

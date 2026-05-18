@@ -4,6 +4,7 @@ import { Box, Button, Card, Collapse, Flex, Group, Image, List, ListItem, Text, 
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { iconMap, metricItems } from "~/utils/constant";
+import MetricCard from "../Template/Cards/MetricCard";
 
 const ExperienceMetricCard: React.FC<AboutMetricProps & { index: number}> = ({title, description, icon, index}) => {
     
@@ -123,7 +124,7 @@ const ExperienceSection: React.FC<ExperienceContentProps> = ({
                 <Flex gap={'xl'} direction={{base: 'column', sm: 'row'}}>
                     {
                         metricItems.map((metric, index) => 
-                            <ExperienceMetricCard {...metric} key={index} index={index}/>
+                            <MetricCard {...metric} key={index} type={'secondary'}/>
                         )
                     }
                 </Flex>
