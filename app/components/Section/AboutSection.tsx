@@ -9,10 +9,12 @@ import PrimaryCard from "../Template/Cards/PrimaryCard"
 
 const MetricComponent: React.FC<AboutMetricProps & {index: number}> = ({title, description, icon, index}) => {
   return (
-    <Flex id={`metric-item-${index}`} gap={'sm'} direction={'column'}>
+    <Flex id={`metric-item-${index}`} gap={'sm'} direction={'column'} flex={1}>
       <Text fz={36} fw={'bold'}>{title}</Text>
       <Flex gap={'xs'}>        
-        {iconMap[icon]} 
+        <Box size={'md'}>
+          {iconMap[icon]} 
+        </Box>
         <Text fz={'lg'}>{description}</Text>
       </Flex>
     </Flex>

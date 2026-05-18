@@ -11,10 +11,10 @@ const ExperienceMetricCard: React.FC<AboutMetricProps & { index: number}> = ({ti
     const computedColorScheme = useComputedColorScheme('light');
     return (
         <Card flex={1} shadow="lg" bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} bd={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[2]}>
-            <Flex id={`metric-item-${index}`} gap={'sm'} direction={'column'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]} >
+            <Flex id={`metric-item-${index}`} gap={'sm'} direction={'column'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
                 <Text fz={36} fw={'bold'}>{title}</Text>
-                <Flex gap={'xs'} >        
-                    {iconMap[icon]} 
+                <Flex gap={'xs'} align={'center'}>        
+                    <Box w={20} h={20}>{iconMap[icon]} </Box>
                     <Text fz={'lg'} fw={'bold'} c={computedColorScheme === 'dark' ? 'white' : theme.colors.blue[8]}>{description}</Text>
                 </Flex>
             </Flex>
@@ -50,7 +50,9 @@ const ExperienceItem: React.FC<{keyTitle: string, experiences: ExperienceProps[]
                                     <Text fw={'bold'} fz={'xl'}>{experience.position}</Text>
                                     {
                                         experience.company && <Group>
-                                            {experience.icon ? <Image src={experience.icon} w={24} h={24}/> : '|'}
+                                            {experience.icon ? 
+                                                <Image src={typeof experience.icon === 'string' ? experience.icon : (computedColorScheme === 'dark' ? experience.icon.dark : experience.icon.light) } w={24} h={24}/> 
+                                                    : '|'}
                                             <Text fw={'bold'} fz={'xl'}>{experience.company}</Text>
                                         </Group>
                                     }

@@ -84,6 +84,7 @@ function CustomCarousel<T>({
           bdrs={"100%"}
           opacity={canPrev ? "100%" : "50%"}
           bg={theme.colors.blue[5]}
+          size={'md'}
         >
           <ChevronLeftIcon />
         </ActionIcon>
@@ -118,6 +119,7 @@ function CustomCarousel<T>({
           bdrs={"100%"}
           opacity={canNext ? "100%" : "50%"}
           bg={theme.colors.blue[5]}
+          size={'md'}
         >
           <ChevronRightIcon />
         </ActionIcon>

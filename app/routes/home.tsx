@@ -57,7 +57,6 @@ export async function loader(){
       title: `Have a project in mind?`,
       description: `I’m always open to collaborating on meaningful products and solving complex problems together.`,
       availability: availability[0],
-      
     }
   }
   return homapageData

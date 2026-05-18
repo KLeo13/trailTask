@@ -1,18 +1,9 @@
 
-export type IconKey =
-  | "linkedin"
-  | "github"
-  | "x"
-  | "suitcase"
-  | "branch"
-  | "grad"
-  | "code"
-  | "brain"
-  | "light"
-  | "teach"
-  | "rocket"
-  | "laptop";
-
+export type IconKey = string
+export type CompanyLogo = string | {
+  light: string,
+  dark: string
+}
 export type NavigationItemProps = {
   label: string, 
   to: string
@@ -91,7 +82,7 @@ export type TrustiesPops = {
 }
 
 export type TestimonialItemProps = {
-  avatar: string,
+  avatar?: string,
   name: string,
   position: string,
   testimony: string,
@@ -112,7 +103,8 @@ export type AvailabilityProps = {
 export type CollaborationProps = {
   title: string,
   description: string,
-  availability: AvailabilityProps
+  availability: AvailabilityProps,
+  buttonLabel?: string
 }
 export type SkillGroupProps = Record<string, string[]>;
 export type AboutHeaderProps = {
@@ -128,7 +120,7 @@ export type ExperienceProps = {
   endDate: string,
   company?: string,
   position: string,
-  icon?: string,
+  icon?: string | CompanyLogo,
   shortDescription?: string,
   bulletpoints?: string[],
 }
@@ -140,7 +132,7 @@ export type ExperienceContentProps = {
 }
 export type GroupExperiences = Record<string, ExperienceProps[]>
 export type CompaniesProps = {
-  logo: string,
+  logo: CompanyLogo,
   link: string
 }
 
@@ -148,4 +140,63 @@ export type CompanyCollabContentProps = {
   title: string,
   companies: CompaniesProps[]
 }
+export type MentorDetailsProps = {
+  icon: IconKey,
+  title: string,
+  description: string
+}
+export type MentorHeaderProps = {
+  title: string,
+  subTitle: string,
+  description: string,
+  mentorGuides: {
+    title: string,
+    guides: MentorDetailsProps[]
+  }
+}
+export type MentorSkillsProps = MentorDetailsProps & {
+  skillsList: string[]
+}
+export type MentorContentProps = {
+  image: string,
+  title: string,
+  description: string,
+  details: MentorDetailsProps[],
+  mentorSkills: {
+    title: string,
+    description: string,
+    skills: MentorSkillsProps[]
+  }
+}
+export type MentorPricing = {
+  label: string,
+  rate: number,
+  uom: string,
+  calls?: number,
+  description: string,
+  includes: {
+    label: string,
+    highlight: boolean,
+    isChecked: boolean
+  }[],
+  mostPopular?: boolean
+}
 
+export type MentorPricingContentProps = {
+  title: string,
+  description: string,
+  plans: MentorPricing[],
+  sessions: MentorPricing[]
+}
+
+export type FAQ = {
+  icon: IconKey,
+  inquiry: string
+  answer: string
+}
+
+export type FAQContentProps = {
+  title: string,
+  description: string,
+  faqs: FAQ[]
+}
