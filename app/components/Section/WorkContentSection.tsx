@@ -17,7 +17,10 @@ const WorkContentSection: React.FC<WorkerDetails> = ({
     const theme = useMantineTheme()
     const computedColorScheme = useComputedColorScheme('light');
     return (
-        <HalfBox mih={{base: 770, sm: 500 , md: 700, lg: 664}}>
+        <>
+        <section className="" style={{
+            backgroundColor: theme.colors.blue[6]
+        }}>
             <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40, lg: 60}} pt={{base: 40, md: 80}} pb={{base: 20, md: 40}}>
                 <DetailsContent image={image} title={title} subtitle={subTitle} description={description} 
                     extraHeaderContent={
@@ -30,20 +33,21 @@ const WorkContentSection: React.FC<WorkerDetails> = ({
                             </Flex>
                         </Stack>
                     } 
-                    extraContent={
-                        <Flex gap={'xl'} direction={{base: 'column', sm: 'row'}}>
-                            {
-                                workerMetric.map((metric, index) => 
-                                    <Box flex={1} key={index}>
-                                        <MetricCard {...metric} type="primary"/>
-                                    </Box>
-                                )
-                            }
-                        </Flex>
-                    }
                 />
             </Flex>
+        </section>
+        <HalfBox mih={{base: 80}}>
+            <Flex gap={'xl'} direction={{base: 'column', sm: 'row'}} maw={1440} mx={'auto'} px={{base: 20, md: 40, lg: 60}}>
+                {
+                    workerMetric.map((metric, index) => 
+                        <Box flex={1} key={index}>
+                            <MetricCard {...metric} type="primary"/>
+                        </Box>
+                    )
+                }
+            </Flex>
         </HalfBox>
+        </>
     )
 }
 

@@ -22,7 +22,7 @@ export async function loader(){
     const workData = {
         headerData: {
             title: 'Build, Scale, and Grow Together',
-            subTitle: 'WORK WITH ME',
+            subTitle: 'Work With Me',
             description: 'Let’s develop scalable systems and ship great products.',
             workerGuideTitle: 'How I Can Help You:',
             workGuides: workGuides
@@ -56,7 +56,7 @@ export async function loader(){
         },
         faqsData: {
             title: 'FAQs',
-            description: `Whether you're building a product, levelling up technically, or navigating a career pivot —\n\nhere's what I bring to the table.`,
+            description: `Whether you're building a product, levelling up technically, or navigating a career pivot —\nhere's what I bring to the table.`,
             faqs: workfaqs
         },
         collabData: {

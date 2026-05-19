@@ -13,6 +13,7 @@ export const MainCTA: React.FC<{
   return (
     <Button
       p={{base: 8, md: pSize}}
+      px={{ base: 24 }}
       fz={{base: 'sm', md: textSize}}
       size={size}
       bg={computedColorScheme === 'dark' ? theme.colors.blue[5] :theme.colors.blue[6]}
@@ -35,6 +36,7 @@ export const DownloadCTA: React.FC<{
   return (
     <Button
       p={{base: 8, md: pSize}}
+      px={{ base: 24 }}
       fz={{base: 'sm', md: textSize}}
       size={size}
       bg={"transparent"}
@@ -57,6 +59,7 @@ export const MentorCTA: React.FC<{
   return (
     <Button
       p={{base: 8, md: pSize}}
+      px={{ base: 24 }}
       fz={{base: 'sm', md: textSize}}
       size={size}
       bg={computedColorScheme === 'dark' ? theme.colors.blue[5] :theme.colors.blue[6]}

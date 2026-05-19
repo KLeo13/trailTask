@@ -6,6 +6,7 @@ import type { AboutItemsProps, AboutMetricProps, AboutProps } from "~/utils/inte
 import { MainCTA } from "../Action/CTAButtons"
 import HalfBox from "../Template/HalfBox"
 import PrimaryCard from "../Template/Cards/PrimaryCard"
+import CustomModal from "../Plugins/CustomModal"
 
 const MetricComponent: React.FC<AboutMetricProps & {index: number}> = ({title, description, icon, index}) => {
   return (
@@ -25,29 +26,50 @@ const AboutItemCard: React.FC<{item: AboutItemsProps, index: number}> = ({item, 
   const theme = useMantineTheme()
   const computedColorScheme = useComputedColorScheme('light');
 
-  const [expanded, { toggle }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(false)
   
   return (
     <>
+      <CustomModal 
+          opened={opened} 
+          onClose={close} 
+          centered
+          size={'md'}
+          title={
+            <Flex direction={'column'} gap={'lg'}>
+                <Flex w={52} h={52} p={'xs'} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} bdrs={'md'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
+                    {iconMap[item.icon]} 
+                </Flex> 
+                <Text fz={24} fw={'bold'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{item.title}</Text>
+            </Flex>
+          }>
+            <Flex direction={'column'} gap={'lg'}>
+                <Text c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]} className={``}>{item.description}</Text>
+                <Text fz='lg' c={computedColorScheme === 'dark' ? 'white' : 'black'}>{item.subTitle}:</Text>
+                <Text c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>{item.subDescription}</Text>
+                <Text fz='lg' c={computedColorScheme === 'dark' ? 'white' : 'black'}>{item.keywordTitle}:</Text>
+                <Flex direction={'column'} align={'start'} gap="sm">
+                  {item.keywords.map((keyword, index) => {
+                    return (
+                      <Text key={index} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.blue[9]} bdrs={'10rem'} size="sm" p={8} display={'flex'}>{keyword}</Text>
+                    )
+                  })}
+                </Flex>
+            </Flex>
+      </CustomModal>
       <PrimaryCard id={`feature-item-${index}`}
         icon={item.icon}
         title={item.title}
         description={item.description}
         extraContent={
           <>
-            <Text fz='lg' c={computedColorScheme === 'dark' ? 'white' : 'black'}>{item.subTitle}:</Text>
-            <Text c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>{item.subDescription}</Text>
-            <Text fz='lg' c={computedColorScheme === 'dark' ? 'white' : 'black'}>{item.keywordTitle}:</Text>
-            <Flex direction={'column'} align={'start'} gap="sm">
-              {item.keywords.map((keyword, index) => {
-                return (
-                  <Text key={index} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.blue[9]} bdrs={'10rem'} size="sm" p={8} display={'flex'}>{keyword}</Text>
-                )
-              })}
-            </Flex>
+            <Button display={'flex'} variant="transparent" p={0} fw={'normal'} mt={'auto'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]} onClick={open}>
+                {opened ? `Show less -` :`Show more +`}
+            </Button>
+            {/*  */}
           </>
         }
-        collapsible={true}
+        collapsible={false}
       >
 
       </PrimaryCard>
@@ -61,7 +83,7 @@ const AboutSection: React.FC<AboutProps> = ({title, description, image, metricIt
   return (
     <>
       <HalfBox mih={{base: 1027, md: 591, lg: 770}}>
-        <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40, lg: 60}} pt={{base: 40, md: 80}} pb={{base: 20, md: 40}}>
+        <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40, lg: 60}} py={{base: 40, md: 80}}>
           <Flex direction={'row'} align={'center'} gap={60}>
             <Box w={456} h={456} p={'sm'} bg={'#FFFFFF1A'} bdrs={24} visibleFrom="md">
               <Image src={image} alt="about-image" w={428} h={428} bdrs={20}/>

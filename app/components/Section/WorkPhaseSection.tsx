@@ -18,7 +18,7 @@ const WorkPhaseCard: React.FC<WorkPhaseProps> = ({
                     transform: `rotate(180deg)`
                 }} bdrs={'sm'} c={theme.white} bg={computedColorScheme === 'dark' ? theme.colors.blue[5] : theme.colors.blue[6]} ta={'center'} p={'sm'}>{`Phase ${number}`}</Box>
                 <Stack>
-                    <Flex w={52} h={52} p={'xs'} bdrs={'md'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
+                    <Flex w={52} h={52} p={'xs'} bdrs={'md'} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
                         {iconMap[icon]} 
                     </Flex> 
                     <Text fz={24} fw={'bold'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{title}</Text>

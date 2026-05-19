@@ -21,7 +21,7 @@ export async function loader(){
     const mentorshipData = {
         mentorHeaderData: {
             title: 'Start or Elevate Your Career in Software Development',
-            subTitle: '1-ON-1 Software Mentorship',
+            subTitle: '1-on-1 Software Mentorship',
             description: 'Mentorship tailored to where you are — and where you want to go.',
             mentorGuides: {
                 title: 'How I Can Guide You:',
