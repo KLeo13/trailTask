@@ -16,7 +16,7 @@ const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', in
             <Text fz={'sm'} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>{item.date}</Text>
           </Flex>
           <Text fz={24} fw={"bold"} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{item.title}</Text>
-          <Text display={type === 'main' ? 'block' : 'none'} className="line-clamp-3">{item.content}</Text>
+          <Text display={type === 'main' ? 'block' : 'none'} className="line-clamp-3">{item.description}</Text>
         </Flex>
       </Flex>
     </Card>

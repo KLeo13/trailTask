@@ -10,7 +10,7 @@ import CTASection from "~/components/Section/CTASection";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Portfolio | Jake Sta. Teresa" },
+    { title: "About Me | Jake Sta. Teresa" },
     { name: "description", content: "20+ years building scalable, user-centric products across AI, fintech, health tech, and enterprise." },
   ];
 }

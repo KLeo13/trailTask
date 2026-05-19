@@ -41,7 +41,7 @@ export async function loader(){
     writingData: {
       title: `Writings`,
       description: `Sharing thoughts,  lessons, ideas, and practical insights from building and scaling software.`,
-      writingItems: writingItems,
+      writingItems: writingItems.slice(0, 3),
     },
     trustyData: {
       title: `Trusted by Teams`,

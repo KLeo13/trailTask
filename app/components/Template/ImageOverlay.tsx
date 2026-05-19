@@ -7,7 +7,7 @@ const ImageOverlay: React.FC<{
   const computedColorScheme = useComputedColorScheme('light');
 
 return (
-    <section className="relative z-10 overflow-x-hidden" style={{
+    <section className="relative z-10 overflow-hidden" style={{
         backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white
     }}>
         <Flex justify={'center'} pos={'absolute'} left={'50%'} className="-translate-x-1/2" maw={1440}>
