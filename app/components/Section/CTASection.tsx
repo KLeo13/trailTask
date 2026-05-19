@@ -9,15 +9,16 @@ const CTASection: React.FC<CollaborationProps> = ({title, description, availabil
   const computedColorScheme = useComputedColorScheme('light');
 
   return (
-      <section className="p-10 md:p-20" style={{
+      <section className="" style={{
         backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white
       }}>
-        <Flex direction={'column'} align={'center'} maw={1440} mx={'auto'} px={{base: 20, md: 40}} pos={'relative'} className="overflow-hidden" >
-          <Box pos={'absolute'} bdrs={'lg'} w={'100%'} h={'100%'} className="overflow-hidden opacity-50"
+        <Flex direction={'column'} align={'center'} maw={1440} mx={{base: 20, md: 40, lg: 80}} pt={40} pb={{base: 40, lg: 80}} pos={'relative'} className="overflow-hidden" >
+          <Box pos={'absolute'} bdrs={'lg'} w={'100%'} h={'auto'} className="overflow-hidden opacity-50"
             style={{
+              objectFit: 'cover',
               background: `linear-gradient(180deg, ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} 0%, ${computedColorScheme === 'dark' ? theme.colors.blue[8] :  theme.white } 100%)`,
             }}>
-            <Image w={'100%'} h={'100%'} style={{objectFit: 'cover'}} src={'/images/tiles.png'}/>
+            <Image w={'100%'} h={'100%'} style={{objectFit: 'cover'}} src={'/images/tiles.png'} bdrs={'lg'}/>
           </Box>
           <Flex direction={'column'} className="z-10" justify={'center'} align={'center'} py={80} gap={40}>
             <Stack gap={24} align="center">

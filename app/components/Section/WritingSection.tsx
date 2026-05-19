@@ -31,7 +31,7 @@ const WritingSection: React.FC<WritingsProps> = ({title, description, writingIte
     <section className="" style={{
       backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white
     }}>
-      <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 20, md: 40}} px={{base: 20, md: 40, lg: 60}} pt={{base: 40, md: 80}} pb={{base: 20, md: 40}}>
+      <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 20, md: 40}} px={{base: 20, md: 40, lg: 60}} py={{base: 40, md: 80}}>
         <Flex direction={'column'} gap="md">
           <h2 id={`writing-title`} className="text-4xl font-bold text-center" style={{
             color: computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]

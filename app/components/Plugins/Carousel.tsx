@@ -99,7 +99,7 @@ function CustomCarousel<T>({
         >
           {grouped.map((group, index) => (
             <Carousel.Slide key={index}>
-              <Grid px={"50"}>
+              <Grid px={{base: 0, sm: 20}}>
                 {group.map((item, i) => (
                   <Grid.Col
                     key={i}
