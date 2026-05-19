@@ -61,7 +61,7 @@ const AboutSection: React.FC<AboutProps> = ({title, description, image, metricIt
   return (
     <>
       <HalfBox mih={{base: 1027, md: 591, lg: 770}}>
-        <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40, lg: 60}} pt={{base: 40, md: 80}} pb={{base: 20, md: 40}}>
+        <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40, lg: 60}} py={{base: 40, md: 80}}>
           <Flex direction={'row'} align={'center'} gap={60}>
             <Box w={456} h={456} p={'sm'} bg={'#FFFFFF1A'} bdrs={24} visibleFrom="md">
               <Image src={image} alt="about-image" w={428} h={428} bdrs={20}/>

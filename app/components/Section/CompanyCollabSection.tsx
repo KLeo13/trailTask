@@ -8,7 +8,7 @@ const CompanyCollabsSection: React.FC<CompanyCollabContentProps> = ({title, comp
         <section className="py-15" style={{
             backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]
         }}>
-            <Flex direction={'column'} justify={'center'} gap={'lg'}>
+            <Flex direction={'column'} justify={'center'} gap={24}>
                 <Text fz={'h2'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]} fw={'bold'} ta={'center'}>{title}</Text>
                 <Marquee fadeEdges={false} duration={10000} repeat={10}>
                     {companies.map((company, index) => {

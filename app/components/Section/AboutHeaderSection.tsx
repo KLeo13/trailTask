@@ -18,7 +18,7 @@ const AboutHeaderSection: React.FC<AboutHeaderProps> = ({
     const computedColorScheme = useComputedColorScheme('light');
     return (
         <ImageOverlay>        
-            <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 20, lg: 40}} px={{base: 20, md: 40, lg: 60}} pt={{base: 40, md: 80}} pb={{base: 20, md: 40}}>
+            <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 20, lg: 40}} px={{base: 20, md: 40, lg: 60}} pt={{base: 40, md: 80}} pb={{base: 40, md: 80}}>
                 <Flex align={'center'} gap={40}>
                     <Box display={{base: 'none', sm: 'block'}} p={8} bdrs={'lg'} style={{
                         backgroundColor: rgba(theme.colors.blue[5], 0.1)
@@ -53,7 +53,7 @@ const AboutHeaderSection: React.FC<AboutHeaderProps> = ({
                         )
                     })}
                 </Stack>
-                <Flex direction={{base: 'column', sm: 'row'}} gap={'md'} justify={'space-between'}>
+                <Flex direction={{base: 'column', sm: 'row'}} gap={'md'} justify={'space-between'} align={'center'}>
                     <Group>
                         <MainCTA size="lg"/>
                         <DownloadCTA/>

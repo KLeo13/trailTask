@@ -105,7 +105,7 @@ const ExperienceSection: React.FC<ExperienceContentProps> = ({
                         {description}
                     </Text>
                 </Flex>
-                <Card shadow="lg" bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}>
+                <Card shadow="lg" p={{base: 'xl', md: 40}} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}>
                     <Box>
                         <Timeline bulletSize={25} lineWidth={1} active={0}>
                             {Object.entries(groupedExperience).slice(0, expanded ? Object.entries(groupedExperience).length : 2).map(([key, experiences], i) => {
