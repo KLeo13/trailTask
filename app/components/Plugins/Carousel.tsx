@@ -125,15 +125,23 @@ function CustomCarousel<T>({
         </ActionIcon>
       </Flex>
 
-      <Flex px={50} justify={{ base: "space-between", sm: "center" }}>
+      <Flex justify={{ base: "space-between", sm: "center" }}>
         <Group
           display={{ base: "flex", sm: "none" }}
           mt="md"
         >
-          <ActionIcon onClick={() => embla?.scrollPrev()}>
+          <ActionIcon onClick={() => embla?.scrollPrev()}
+            bdrs={"100%"}
+            opacity={canNext ? "100%" : "50%"}
+            bg={theme.colors.blue[5]}
+            size={'xl'}>
             <ChevronLeftIcon />
           </ActionIcon>
-          <ActionIcon onClick={() => embla?.scrollNext()}>
+          <ActionIcon onClick={() => embla?.scrollNext()}
+            bdrs={"100%"}
+            opacity={canNext ? "100%" : "50%"}
+            bg={theme.colors.blue[5]}
+            size={'xl'}>
             <ChevronRightIcon />
           </ActionIcon>
         </Group>
