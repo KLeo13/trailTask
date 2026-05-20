@@ -1,5 +1,4 @@
 import { Box, Flex, Grid, Image, Stack, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core"
-import { GridIcon } from "~/utils/icons"
 import { MainCTA } from "../Action/CTAButtons";
 import type { CollaborationProps } from "~/utils/interface";
 

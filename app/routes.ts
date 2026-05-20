@@ -6,5 +6,7 @@ export default [
         route("about", "routes/about.tsx"),
         route("mentorship", "routes/mentorship.tsx"),
         route("work-with-me", "routes/workwithme.tsx"),
+        route("blogs", "routes/blogs.tsx"),
+        route("blogs/:slug", "routes/blog.tsx")
     ])
 ] satisfies RouteConfig;

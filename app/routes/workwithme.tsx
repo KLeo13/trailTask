@@ -13,7 +13,7 @@ import WorkPhaseSection from "~/components/Section/WorkPhaseSection";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Mentorship | Jake Sta. Teresa" },
+    { title: "Work With Me | Jake Sta. Teresa" },
     { name: "description", content: "20+ years building scalable, user-centric products across AI, fintech, health tech, and enterprise." },
   ];
 }

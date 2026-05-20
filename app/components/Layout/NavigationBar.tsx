@@ -61,7 +61,7 @@ const NavigationBar: React.FC<{}> = () => {
         <Flex className="gap-6 items-center" visibleFrom="sm">
           <NavigationContent/>
         </Flex>
-        <ActionIcon display={{base: 'block', sm: 'none'}} onClick={toggle} size={'xl'} c="inherit" bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.blue[0]}`}>
+        <ActionIcon display={{base: 'block', sm: 'none'}} onClick={toggle} size={'xl'} p={'xs'} c="inherit" bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.blue[0]}`}>
           <BarsIcon/>
         </ActionIcon>
       </Flex>

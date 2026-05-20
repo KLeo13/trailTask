@@ -9,7 +9,16 @@
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
 }
+[data-mantine-color-scheme="light"] {
+  --mdx-heading-color: #111;
+}
 
+[data-mantine-color-scheme="dark"] {
+  --mdx-heading-color: #f1f1f1;
+}
+.mdx h1, .mdx h2, .mdx h3 {
+  color: var(--mdx-heading-color);
+}
 /* 
 html,
 body {

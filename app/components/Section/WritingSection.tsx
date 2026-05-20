@@ -2,11 +2,11 @@ import { Box, Button, Card, Flex, Image, Text, useComputedColorScheme, useMantin
 import { writingItems } from "~/utils/constant";
 import type { WritingItemsProps, WritingsProps } from "~/utils/interface";
 
-const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', index: number}> = ({item, type = 'main', index}) => {
+export const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', index: number}> = ({item, type = 'main', index}) => {
   const theme = useMantineTheme()
   const computedColorScheme = useComputedColorScheme('light');
   return (
-    <Card id={`article-item-${index}`} p={"md"} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} h={"100%"} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} c="inherit">
+    <Card flex={1} id={`article-item-${index}`} p={"md"} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} c="inherit">
       <Flex direction={{base: 'column', xs: type === 'main' ? 'column' : 'row'}} gap={'sm'}>
         <Image bdrs={'md'} src={item.image} alt={item.image} w={type === 'main' ? {base: 582, xs: '100%'} : {base: '100%', xs: 180}} h={type === 'main' ? 319 : '100%'}/>
         <Flex direction={"column"} gap="sm" justify={'center'}>
@@ -16,7 +16,7 @@ const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', in
             <Text fz={'sm'} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>{item.date}</Text>
           </Flex>
           <Text fz={24} fw={"bold"} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{item.title}</Text>
-          <Text display={type === 'main' ? 'block' : 'none'} className="line-clamp-3">{item.content}</Text>
+          <Text display={type === 'main' ? 'block' : 'none'} className="line-clamp-3">{item.description}</Text>
         </Flex>
       </Flex>
     </Card>

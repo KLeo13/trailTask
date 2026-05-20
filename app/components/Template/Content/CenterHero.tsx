@@ -2,7 +2,7 @@ import { Flex, Text, Title, useComputedColorScheme, useMantineTheme } from "@man
 
 const CenterHero: React.FC<{
     title: string,
-    subTitle: string,
+    subTitle?: string | React.ReactNode,
     description: string,
     cta: React.ReactNode
 }> = ({ title, subTitle, description, cta }) => {
@@ -12,14 +12,18 @@ const CenterHero: React.FC<{
 
     return (
         <Flex direction={'column'} align={'center'} gap={'xl'} maw={1080} mx={'auto'}>
-            <Title order={2} fw={'normal'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{subTitle}</Title>
+            {subTitle && 
+                (typeof subTitle == 'string' ? 
+                    <Title order={2} fw={'normal'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{subTitle}</Title>
+                : subTitle)
+            }
             <Title order={1} id="hero-title" className="text-5xl! lg:text-6xl! text-center" style={{
                     background: `-webkit-linear-gradient(0deg, #064280 0%, #4B96E7 100%)`,
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                 } as React.CSSProperties}
             >{title}</Title>
-            <Text>{description}</Text>
+            <Text ta={'center'}>{description}</Text>
             {cta}
         </Flex>
     )

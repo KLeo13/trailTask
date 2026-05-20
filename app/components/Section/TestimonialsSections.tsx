@@ -1,10 +1,10 @@
 import { Box, Button, Card, Flex, Image, Modal, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core"
-import CustomCarousel from "../Plugins/Carousel"
 import type { TestimonialItemProps, TestimonialProps } from "~/utils/interface";
 import { iconMap, testimonials } from "~/utils/constant";
 import HalfBox from "../Template/HalfBox";
 import { useDisclosure } from "@mantine/hooks";
 import CustomModal from "../Plugins/CustomModal";
+import { CustomCarousel } from "../Plugins/Carousel";
 
 const CardContent: React.FC<{item: TestimonialItemProps}> = ({item}) => {
   return (
@@ -72,7 +72,12 @@ const TestimonialsSections: React.FC<TestimonialProps> = ({title, description, t
         </Flex>
         <CustomCarousel
           items={testimonialItems}
-          renderItem={(item) => <ItemCard item={item} />}
+          renderItem={(item: any) => <ItemCard item={item} />}
+          layout={{
+            base: { cols: 1, rows: 1 },
+            sm: { cols: 2, rows: 2 },
+            md: { cols: 3, rows: 2 },
+          }}
         />
       </Flex>
     </HalfBox>
