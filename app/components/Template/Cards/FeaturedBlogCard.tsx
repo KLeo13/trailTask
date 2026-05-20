@@ -1,4 +1,5 @@
 import { Card, Flex, Group, Image, Stack, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core";
+import { Link } from "react-router";
 import type { WritingItemsProps } from "~/utils/interface";
 
 const FeaturedBlogCard: React.FC<WritingItemsProps> = (props) => {
@@ -17,7 +18,7 @@ const FeaturedBlogCard: React.FC<WritingItemsProps> = (props) => {
                         <Text fz={'sm'}>•</Text>
                         <Text fz={'sm'} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>{props.date}</Text>
                     </Group>
-                    <Text fz={{base: 30, lg: 48}} lh={1.2} fw={"bold"} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{props.title}</Text>
+                    <Link to={`/blogs/${props.slug}`}><Text fz={{base: 30, lg: 48}} lh={1.2} fw={"bold"} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{props.title}</Text></Link>
                     <Text className="line-clamp-3" display={{base: 'none', md: 'flow-root'}} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>{props.description}</Text>
                 </Stack>
             </Flex>

@@ -3,7 +3,11 @@
 // =============================
 
 export type IconKey = string;
-
+export type HeadingsProps = {
+  text: string,
+  id: string,
+  level: number
+}
 export type CompanyLogo =
   | string
   | {
@@ -85,12 +89,14 @@ export type ServiceProps = SectionBase & {
 // =============================
 
 export type WritingItemsProps = {
+  id?: string;
   image: string;
   category: string;
   date: string;
   title: string;
   description: string;
   content: string;
+  slug: string;
 };
 
 export type WritingsProps = SectionBase & {

@@ -64,6 +64,7 @@ export const servicesItems: ServicesItemsProps[] = [
   {icon: 'teach', title: 'Mentorship', description: "Grow as an engineer with practical, real-world guidance. I work with developers and teams to improve how they think, build, and make technical decisions.", list: ['1:1 mentorship and ongoing support','System design and architecture guidance','Code reviews and technical feedback','Real-world problem solving and best practices',]},
 ]
 const writingItem: WritingItemsProps =  {
+  slug: '',
   image: '/images/writing.png', 
   category: 'Category', 
   date: 'Aprill 22, 2026', 
@@ -96,7 +97,10 @@ const writingItem: WritingItemsProps =  {
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed dui quis ex aliquam varius quis in neque. Pellentesque aliquet felis non convallis congue. Duis consectetur, tellus eu maximus tincidunt, tortor justo mattis diam, non commodo tellus libero convallis massa. Phasellus convallis justo vel varius facilisis. Morbi scelerisque turpis sed tempor cursus. Curabitur molestie odio purus, vitae hendrerit felis aliquam sed. Curabitur placerat, metus eleifend pellentesque euismod, turpis ligula congue risus, auctor interdum erat risus dignissim eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur mattis tempus velit, eu dapibus nulla viverra in. Nulla fringilla gravida pulvinar. Quisque vulputate ex in malesuada venenatis. In placerat nibh posuere dui pretium dictum. Ut nec lobortis ipsum, in molestie eros.</p>
   `
 }
-export const writingItems: WritingItemsProps[] = Array(9).fill(writingItem)
+export const writingItems: WritingItemsProps[] = Array.from({ length: 9 }, (_, i) => ({
+  ...writingItem,
+  id: (i + 1).toString(), // ✅ unique id
+}));
 
 export const trustyBrands: TrustyBrandPlacement[] = [
   {thumb: '/images/brands/undetectable.png', label: 'Undetectable AI', link: '#', classTransform: 'top-0 left-1/2 -translate-x-1/2'},

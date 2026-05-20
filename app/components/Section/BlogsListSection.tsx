@@ -1,17 +1,21 @@
 import { Box, Button, Chip, Flex, Grid, Group, SegmentedControl, Stack, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ListIcon, ThumbnailIcon } from "~/utils/icons";
 import type { WritingItemsProps } from "~/utils/interface";
 import BlogListCard from "../Template/Cards/BlogListCard";
 import BlogThumbCard from "../Template/Cards/BlogThumbCard";
+import { loadBlogs } from "~/utils/blogs";
 
-const BlogsListSection: React.FC<{blogList: WritingItemsProps[]}> = ({blogList}) => {
+const BlogsListSection: React.FC<any> = (blogs) => {
 
     const theme = useMantineTheme()
     const computedColorScheme = useComputedColorScheme('light');
 
     const [displayType, setDisplayType] = useState<string>('list')
     const [categoryFilter, setCategoryFilter] = useState<string | 'all'>('all')
+
+    const blogList: WritingItemsProps[] = Object.values(blogs).map((blog: any) => blog.frontmatter)
+    
     const categories = Array.from(new Set(blogList.map(item => item.category)));
     return (
         <section>
@@ -28,7 +32,7 @@ const BlogsListSection: React.FC<{blogList: WritingItemsProps[]}> = ({blogList})
                             </Button>
                             {
                                 categories.map((cat, index) =>
-                                    <Button px={'lg'} onClick={() => setCategoryFilter(cat)}
+                                    <Button key={index} px={'lg'} onClick={() => setCategoryFilter(cat)}
                                         fw={'normal'}
                                         bg={categoryFilter == cat ? (computedColorScheme == 'dark' ? theme.colors.blue[5] : theme.colors.blue[6]) : 'transparent'}
                                         c={categoryFilter == cat ? theme.white : theme.colors.blue[6]} 

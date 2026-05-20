@@ -1,46 +1,58 @@
-import {
-  ActionIcon,
-  Box,
-  Flex,
-  Group,
-  useComputedColorScheme,
-  useMantineTheme
-} from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
 import { Carousel } from "@mantine/carousel";
-import { Grid } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { ActionIcon, Box, Flex, Grid, Group, useComputedColorScheme, useMantineTheme } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import type { EmblaCarouselType } from "embla-carousel";
-import { chunkArray } from "~/utils/helper";
+import React, { useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "~/utils/icons";
+
+type Layout = {
+  cols: number;
+  rows: number;
+};
+
+type ResponsiveLayout = {
+  base: Layout;
+  sm?: Layout;
+  md?: Layout;
+  lg?: Layout;
+};
 
 type CustomCarouselProps<T> = {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
-  itemsPerSlide?: number;
+  layout: ResponsiveLayout;
 };
 
-function CustomCarousel<T>({
+function chunkArray<T>(array: T[], size: number) {
+  const result: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+}
+
+export function CustomCarousel<T>({
   items,
   renderItem,
-  itemsPerSlide: itemsPerSlideProp
+  layout,
 }: CustomCarouselProps<T>) {
-  const theme = useMantineTheme();
-  const computedColorScheme = useComputedColorScheme("light", {
-    getInitialValueInEffect: true
-  });
+  const theme = useMantineTheme()
+  const computedColorScheme = useComputedColorScheme('light');
 
-  const isMd = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
-  const isSm = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
+  // Mantine default breakpoints
+  const isLg = useMediaQuery("(min-width: 1200px)");
+  const isMd = useMediaQuery("(min-width: 992px)");
+  const isSm = useMediaQuery("(min-width: 768px)");
 
-  let itemsPerSlide = itemsPerSlideProp ?? 1;
+  // Resolve active layout
+  let currentLayout = layout.base;
 
-  if (!itemsPerSlideProp) {
-    if (isMd) itemsPerSlide = 6;
-    else if (isSm) itemsPerSlide = 4;
-  }
+  if (isLg && layout.lg) currentLayout = layout.lg;
+  else if (isMd && layout.md) currentLayout = layout.md;
+  else if (isSm && layout.sm) currentLayout = layout.sm;
 
-  const grouped = chunkArray(items, itemsPerSlide);
+  const itemsPerSlide = currentLayout.cols * currentLayout.rows;
+  const slides = chunkArray(items, itemsPerSlide);
 
   const [embla, setEmbla] = useState<EmblaCarouselType | null>(null);
   const [selected, setSelected] = useState(0);
@@ -49,6 +61,7 @@ function CustomCarousel<T>({
 
   useEffect(() => {
     if (!embla) return;
+
 
     const onSelect = () => {
       setSelected(embla.selectedScrollSnap());
@@ -66,86 +79,84 @@ function CustomCarousel<T>({
     onSelect();
     update();
 
+    embla.reInit()
+
     return () => {
       embla.off("select", onSelect);
       embla.off("select", update);
       embla.off("reInit", update);
     };
-  }, [embla]);
+  }, [embla, itemsPerSlide, items.length]);
 
   const slidesCount = embla?.scrollSnapList().length || 0;
 
   return (
-    <Box>
-      <Flex align={"center"}>
+    <Box  w={'100%'}>
+      <Flex w={'100%'} align={'center'} gap={'sm'}>
         <ActionIcon
-          onClick={() => embla?.scrollPrev()}
-          visibleFrom="sm"
-          bdrs={"100%"}
-          opacity={canPrev ? "100%" : "50%"}
-          bg={theme.colors.blue[5]}
-          size={'md'}
+            visibleFrom="sm"
+            onClick={() => embla?.scrollPrev()}
+            bdrs={"100%"}
+            opacity={canPrev ? "100%" : "50%"}
+            bg={theme.colors.blue[5]}
+            size={'lg'}
         >
-          <ChevronLeftIcon />
+            <ChevronLeftIcon/>
         </ActionIcon>
-
-        <Carousel
-          slideSize="100%"
-          w={"100%"}
-          key={itemsPerSlide}
-          withIndicators={false}
-          withControls={false}
-          getEmblaApi={setEmbla}
-        >
-          {grouped.map((group, index) => (
-            <Carousel.Slide key={index}>
-              <Grid px={{base: 0, sm: 20}}>
-                {group.map((item, i) => (
+        <Carousel w={'100%'} slideSize="100%" 
+            slideGap="md"
+            withControls={false}
+            withIndicators={false}
+            key={itemsPerSlide}
+            getEmblaApi={setEmbla}
+          >
+          {slides.map((group, slideIndex) => (
+            <Carousel.Slide key={slideIndex}>
+              <Grid>
+                {group.map((item, itemIndex) => (
                   <Grid.Col
-                    key={i}
-                    span={isMd ? 4 : isSm ? 6 : 12}
+                    key={itemIndex}
+                    span={12 / currentLayout.cols}
                   >
-                    {renderItem(item, i)}
+                    {renderItem(item, itemIndex)}
                   </Grid.Col>
                 ))}
               </Grid>
             </Carousel.Slide>
           ))}
         </Carousel>
-
         <ActionIcon
-          onClick={() => embla?.scrollNext()}
-          visibleFrom="sm"
-          bdrs={"100%"}
-          opacity={canNext ? "100%" : "50%"}
-          bg={theme.colors.blue[5]}
-          size={'md'}
+            visibleFrom="sm"
+            onClick={() => embla?.scrollNext()}
+            bdrs={"100%"}
+            opacity={canNext ? "100%" : "50%"}
+            bg={theme.colors.blue[5]}
+            size={'lg'}
         >
-          <ChevronRightIcon />
+            <ChevronRightIcon />
         </ActionIcon>
       </Flex>
-
-      <Flex justify={{ base: "space-between", sm: "center" }}>
-        <Group
-          display={{ base: "flex", sm: "none" }}
-          mt="md"
-        >
-          <ActionIcon onClick={() => embla?.scrollPrev()}
-            bdrs={"100%"}
-            opacity={canNext ? "100%" : "50%"}
-            bg={theme.colors.blue[5]}
-            size={'xl'}>
-            <ChevronLeftIcon />
+      <Flex justify={{base: 'space-between', sm: 'center'}} align={'center'} mt={'sm'}>
+        <Flex gap={'xs'} display={canNext || canPrev ? {base: 'flex', sm: 'none'} : 'none'}>
+          <ActionIcon
+              onClick={() => embla?.scrollPrev()}
+              bdrs={"100%"}
+              opacity={canPrev ? "100%" : "50%"}
+              bg={theme.colors.blue[5]}
+              size={'xl'}
+          >
+              <ChevronLeftIcon/>
           </ActionIcon>
-          <ActionIcon onClick={() => embla?.scrollNext()}
-            bdrs={"100%"}
-            opacity={canNext ? "100%" : "50%"}
-            bg={theme.colors.blue[5]}
-            size={'xl'}>
-            <ChevronRightIcon />
+          <ActionIcon
+              onClick={() => embla?.scrollNext()}
+              bdrs={"100%"}
+              opacity={canNext ? "100%" : "50%"}
+              bg={theme.colors.blue[5]}
+              size={'xl'}
+          >
+              <ChevronRightIcon />
           </ActionIcon>
-        </Group>
-
+        </Flex>
         <Group justify="center" mt="md" gap={8}>
           {Array.from({ length: slidesCount }).map((_, index) => (
             <Box
@@ -166,5 +177,3 @@ function CustomCarousel<T>({
     </Box>
   );
 }
-
-export default CustomCarousel;

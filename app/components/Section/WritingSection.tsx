@@ -2,7 +2,7 @@ import { Box, Button, Card, Flex, Image, Text, useComputedColorScheme, useMantin
 import { writingItems } from "~/utils/constant";
 import type { WritingItemsProps, WritingsProps } from "~/utils/interface";
 
-const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', index: number}> = ({item, type = 'main', index}) => {
+export const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', index: number}> = ({item, type = 'main', index}) => {
   const theme = useMantineTheme()
   const computedColorScheme = useComputedColorScheme('light');
   return (
