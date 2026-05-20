@@ -60,7 +60,7 @@ const BlogPageSection: React.FC<any> = (blogObject) => {
             </ImageOverlay>
             <Image src={blog.image} alt={blog.image} w={'100%'} h={{base: 150, sm: 355, md: 500}}/>
             <Flex pos={'relative'} p={{base: 40, md: 80}} py={{base: 20, sm: 40, md: 80}} gap={40} direction={{base: 'column', lg: 'row'}} align={{base: 'stretch', lg: 'start'}}>
-                <Card display={'flex'} p={28} className="flex-col gap-5" visibleFrom="lg" flex={0.40} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}
+                <Card display={'flex'} p={28} className="flex-col gap-5" visibleFrom="lg" flex={0.30} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}
                     style={{boxShadow: `0px 2px 10px 6px ${computedColorScheme === 'dark' ? 'rgba(3, 84, 166, 0.08)' : 'rgba(1, 17, 33, 0.04)'}`}}>
                     <Flex align="center" gap={20}>
                         <Box w={25} h={25}>
