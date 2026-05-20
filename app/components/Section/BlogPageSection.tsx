@@ -88,6 +88,16 @@ const BlogPageSection: React.FC<any> = (blogObject) => {
                         value: h.id,
                         label: `${h.text}`,
                     }))}
+                     styles={{
+                        input: {
+                            border: `solid 1px ${computedColorScheme == 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`,
+                            backgroundColor: 'transparent'
+                        },
+                        dropdown: {
+                            border: `solid 1px ${computedColorScheme == 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`,
+                            backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'
+                        },
+                    }}
                 />
                 <Box flex={1} >
                     <Paper className="mdx" bg={'transparent'}>
