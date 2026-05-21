@@ -16,26 +16,26 @@ export function meta({}: Route.MetaArgs) {
 }
 export async function loader(){
     
-    const blogs = await loadBlogs()
     const blogsData = {
         headerData: {
             title: 'Writings',
             description: 'On building reliable systems, leading teams , and applying AI in production.' 
         },
-        blogs: blogs
     }
     return blogsData
 }
 export default function Blogs() {
 
-    const { headerData, blogs } = useLoaderData() as {
+    const { headerData } = useLoaderData() as {
         headerData: WritingHeaderProps,
-        blogs: any
     }
+    const blogs = loadBlogs()
+    const featuredBlog = Object.entries(blogs)[0]
+
     return (
         <>
             <BlogsHeaderSection {...headerData}/>
-            <FeaturedBlogsSection {...blogs[0]}/>
+            <FeaturedBlogsSection {...featuredBlog}/>
             <BlogsListSection {...blogs}/>
         </>
     )

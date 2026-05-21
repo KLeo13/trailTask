@@ -1,10 +1,7 @@
-export async function loadBlogs() {
+export function loadBlogs() {
     const modules = import.meta.glob<any>(
         "../mdx/blogs/*.mdx",
-        {
-            eager: true,
-        }
+        { eager: true }
     );
-    const blogs = Object.values(modules);
-    return blogs
+    return modules
 }

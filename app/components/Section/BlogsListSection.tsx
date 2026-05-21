@@ -14,8 +14,12 @@ const BlogsListSection: React.FC<any> = (blogs) => {
     const [displayType, setDisplayType] = useState<string>('list')
     const [categoryFilter, setCategoryFilter] = useState<string | 'all'>('all')
 
-    const blogList: WritingItemsProps[] = Object.values(blogs).map((blog: any) => blog.frontmatter)
-    
+    const blogList = Object.entries(blogs).map(([path, blog]: any) => {
+        return {
+            ...blog.frontmatter,
+            slug: path.split("/").pop()?.replace(".mdx", "")
+        }
+    });
     const categories = Array.from(new Set(blogList.map(item => item.category)));
     return (
         <section>

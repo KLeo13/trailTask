@@ -26,18 +26,14 @@ export async function loader(){
 }
 export default function Blog({params}: Route.LoaderArgs) {
 
-    const modules = import.meta.glob<any>(
-        "../mdx/blogs/*.mdx",
-        { eager: true }
-    );
+    const modules = loadBlogs()
 
     const entry = Object.entries(modules).find(([path]) => {
         return path.split("/").pop()?.replace(".mdx", "") === params.slug;
     });
 
     const blog = entry?.[1];
-    const relevantBlogs = Object.entries(modules).map((blogs) => blogs[1])
-
+    const relevantBlogs = modules
     const { collabData } = useLoaderData() as {
         collabData: CollaborationProps
     }

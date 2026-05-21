@@ -11,7 +11,12 @@ import { CustomCarousel } from "../Plugins/Carousel"
 
 const RelatedBlogSection: React.FC<any> = (blogs) => {
     
-    const blogList: WritingItemsProps[] = Object.values(blogs).map((blog: any) => blog.frontmatter)
+    const blogList = Object.entries(blogs).map(([path, blog]: any) => {
+        return {
+            ...blog.frontmatter,
+            slug: path.split("/").pop()?.replace(".mdx", "")
+        }
+    });
 
     const theme = useMantineTheme()
     const computedColorScheme = useComputedColorScheme('light');
