@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router"
+import { useLoaderData, useSearchParams } from "react-router"
 import BlogsHeaderSection from "~/components/Section/BlogsHeaderSection"
 import BlogsListSection from "~/components/Section/BlogsListSection"
 import FeaturedBlogsSection from "~/components/Section/FeaturedBlogSection"
@@ -32,11 +32,15 @@ export default function Blogs() {
     const blogs = loadBlogs()
     const featuredBlog = Object.entries(blogs)[0]
 
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const searchQuery = searchParams.get("search") || "";
+
     return (
         <>
-            <BlogsHeaderSection {...headerData}/>
-            <FeaturedBlogsSection {...featuredBlog}/>
-            <BlogsListSection {...blogs}/>
+            <BlogsHeaderSection {...headerData} searchQuery={searchQuery} setSearchParams={setSearchParams}/>
+            {!searchQuery && <FeaturedBlogsSection {...featuredBlog}/>}
+            <BlogsListSection blogs={blogs} searchQuery={searchQuery}/>
         </>
     )
 }

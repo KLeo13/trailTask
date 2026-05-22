@@ -66,7 +66,7 @@ const CarouselHero: React.FC<{
             </Flex>
             <Carousel
                 slideSize={slideSize}
-                slideGap={{base: 0, sm: 'sm'}}
+                slideGap={{base: 0, sm: 32}}
                 emblaOptions={{ align: 'start'}}
                 withControls={false}
                 withIndicators={false}

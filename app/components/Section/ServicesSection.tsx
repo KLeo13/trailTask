@@ -33,7 +33,7 @@ const ServicesSection: React.FC<ServiceProps> = ({title, description, serviceIte
     <section className="" style={{
       backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white
     }}>
-      <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40, lg: 60}} py={{base: 40, md: 80}}>
+      <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40}} py={{base: 40, md: 80}}>
         <Flex direction={'column'} gap="md">
           <h2 id='service-title' className="text-4xl font-bold text-center" style={{
             color: computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]

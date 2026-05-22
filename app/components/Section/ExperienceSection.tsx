@@ -115,7 +115,7 @@ const ExperienceSection: React.FC<ExperienceContentProps> = ({
                             })}
                         </Timeline>
                     </Box>
-                    <Box mx={"auto"}>
+                    <Box mx={"auto"} mt={40}>
                         <Button display={'flex'} variant="transparent" p={0} fw={'normal'} mt={'auto'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]} onClick={toggle}>
                             {expanded ? `Show less -` :`Show more +`}
                         </Button>

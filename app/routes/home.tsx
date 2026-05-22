@@ -9,6 +9,7 @@ import TestimonialsSections from "~/components/Section/TestimonialsSections";
 import { aboutItems, availability, metricItems, servicesItems, socialLinks, testimonials, trustyBrands, writingItems } from "~/utils/constant";
 import type { AboutProps, CollaborationProps, HeroProps, ServiceProps, TestimonialProps, TrustiesPops, WritingsProps } from "~/utils/interface";
 import { useLoaderData } from "react-router";
+import { loadBlogs } from "~/utils/blogs";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -73,11 +74,13 @@ export default function Home() {
     collabData: CollaborationProps,
   }
 
+  const blogs = loadBlogs()
+
   return <>
     <HeroSection {...heroData} />
     <AboutSection {...aboutData} />
     <ServicesSection {...serviceData} />
-    <WritingSection {...writingData} />
+    <WritingSection {...writingData} blogs={blogs} />
     <TrustiesSection {...trustyData} />
     <TestimonialsSections {...testimonialsData} />
     <CTASection {...collabData} />

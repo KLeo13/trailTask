@@ -19,14 +19,10 @@ const PricingCard: React.FC<{
     const theme = useMantineTheme()
     const computedColorScheme = useComputedColorScheme('light');
 
-    const [onHover, toggleOnHover] = useState<boolean>(false)
-
     return (
-        <Grid.Col onMouseEnter={() => toggleOnHover(true)} 
-            onMouseLeave={() => toggleOnHover(false)} 
-            className={`cursor-pointer`} 
+        <Grid.Col className={`cursor-pointer`} 
             style={{
-                background: (selectedPlan && selectedPlan == plan) || onHover ? `linear-gradient(180deg, ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} 0%, ${computedColorScheme === 'dark' ? theme.colors.blue[8] : 'transparent'} 100%)` : 'transparent'
+                background: (selectedPlan && selectedPlan == plan) || plan.mostPopular ? `linear-gradient(180deg, ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} 0%, ${computedColorScheme === 'dark' ? theme.colors.blue[8] : 'transparent'} 100%)` : 'transparent'
             }}
             span={span}
             p={'sm'}
@@ -36,9 +32,9 @@ const PricingCard: React.FC<{
                 {plan.mostPopular && <Text pos={'absolute'} top={0} left={'50%'} className="-translate-x-1/2 uppercase" fw={'bold'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{'Most Popular'}</Text>}
                 <Card flex={1} p={'sm'} mt={34} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'lg'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}
                     style={{boxShadow: `0px 2px 10px 6px ${computedColorScheme === 'dark' ? 'rgba(3, 84, 166, 0.08)' : 'rgba(1, 17, 33, 0.04)'}`}} 
-                    className={`${(selectedPlan && selectedPlan == plan) || onHover ? 'translate-y-0' : 'translate-y-5'} hover:translate-y-0 transition-all`}
+                    className={`${(selectedPlan && selectedPlan == plan) || plan.mostPopular ? 'translate-y-0' : 'translate-y-5'} transition-all`}
                 >
-                    <Card.Section flex={1} display={"flex"}  className="flex-col gap-4" withBorder p={'xl'} pb={20} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>
+                    <Card.Section flex={1} display={"flex"}  className="flex-col gap-8" withBorder p={'xl'} pb={20} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>
                         <Stack bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[0]}
                             bdrs={'md'} p={'lg'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}
                         >

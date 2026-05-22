@@ -5,6 +5,7 @@ import React from "react"
 import { DownloadCTA, MainCTA } from "../Action/CTAButtons"
 import { Link } from "react-router"
 import { iconMap } from "~/utils/constant"
+import { HeroTitle } from "../Template/HeroTitle"
 
 const AboutHeaderSection: React.FC<AboutHeaderProps> = ({
     title,
@@ -26,12 +27,7 @@ const AboutHeaderSection: React.FC<AboutHeaderProps> = ({
                         <Image id="hero-image" bdrs={'md'} src={heroImage} alt={heroImage} w={160} h={160}/>
                     </Box>
                     <Flex direction={'column'} gap={'md'}>
-                        <Title order={1} id="hero-title" className="text-5xl! lg:text-6xl!" style={{
-                                background: `-webkit-linear-gradient(0deg, #064280 0%, #4B96E7 100%)`,
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                            } as React.CSSProperties}
-                        >{title}</Title>
+                        <HeroTitle title={title}/>
                         <Text fz={'xl'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
                             {typeof roles === 'string' ? roles : roles.join(' | ')}
                         </Text>

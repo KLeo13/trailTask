@@ -13,7 +13,7 @@ const WorkHeaderSection: React.FC<WorkHeaderProps> = ({
         <ImageOverlay>
             <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 20, lg: 'xl'}} px={{base: 20, md: 40}} pt={{base: 40}} pb={{base: 20, md: 40}}>
                 <CenterHero title={title} subTitle={subTitle} description={description} cta={<ReachOutCTA size="lg"/>}/>
-                <CarouselHero title={workerGuideTitle} slideSize={{ base: '100%', sm: '50%', md: '25%'}} items={workGuides}/>
+                <CarouselHero title={workerGuideTitle} slideSize={{ base: '100%', sm: '50%', md: '33.33333%', lg: '25%'}} items={workGuides}/>
             </Flex>
         </ImageOverlay>
     )

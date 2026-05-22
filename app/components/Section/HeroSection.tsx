@@ -4,6 +4,7 @@ import { iconMap, socialLinks } from "~/utils/constant";
 import { DownloadCTA, MainCTA } from "../Action/CTAButtons";
 import TypingText from "../Plugins/TypingText";
 import type { HeroProps, SocialLinksProps } from "~/utils/interface";
+import { HeroTitle } from "../Template/HeroTitle";
 
 const HeroSection: React.FC<HeroProps> = ({
   heroName,
@@ -21,11 +22,7 @@ const HeroSection: React.FC<HeroProps> = ({
         <Flex direction={"column"} gap={'md'} maw={'480'}>
           <Flex direction={"column"} gap={8}>
             <Text c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]} fz={'xl'}>{'HI THERE 👋🏻, I’M'}</Text>
-            <h1 id="hero-title" className="text-5xl lg:text-6xl font-bold" style={{
-              background: `-webkit-linear-gradient(0deg, #064280 0%, #4B96E7 100%)`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            } as React.CSSProperties}>{heroName}</h1>
+            <HeroTitle title={heroName}/>
             <Text id="hero-roles" fz={{base: 24, sm: 30}} c={computedColorScheme === 'dark' ? 'white' : 'black'}>
               {
                 typeof roles == 'string' ? roles : 
@@ -45,7 +42,7 @@ const HeroSection: React.FC<HeroProps> = ({
             gap={'sm'}>
             {socialLinks.map((link, index) => {
               return (
-                <Link id={`hero-social-link-${index}`} to={link.to} key={index} className="border border-blue-100 rounded size-10 flex items-center justify-center">
+                <Link id={`hero-social-link-${index}`} to={link.to} key={index} className="border border-blue-100 rounded size-10 p-2 flex items-center justify-center">
                   {iconMap[link.icon]}
                 </Link>
               )

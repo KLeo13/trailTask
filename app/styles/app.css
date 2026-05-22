@@ -4,7 +4,9 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-
+html {
+  scroll-behavior: smooth;
+}
 @keyframes blink {
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
@@ -16,8 +18,16 @@
 [data-mantine-color-scheme="dark"] {
   --mdx-heading-color: #f1f1f1;
 }
-.mdx h1, .mdx h2, .mdx h3 {
+#mdx h1, #mdx h2, #mdx h3 {
   color: var(--mdx-heading-color);
+}
+#mdx h2 {
+  font-size: 36px;
+  font-weight: 600;
+}
+#mdx h3 {
+  font-size: 24px;
+  font-weight: 500;
 }
 /* 
 html,

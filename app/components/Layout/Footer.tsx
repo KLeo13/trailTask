@@ -1,8 +1,11 @@
-import { Box, Divider, Image, Text } from "@mantine/core"
+import { Box, Divider, Image, rgba, Text, useComputedColorScheme, useMantineTheme } from "@mantine/core"
 import { Link, NavLink } from "react-router"
 import { iconMap, navigationItems, socialLinks } from "~/utils/constant"
 
 const Footer: React.FC<{}> = () => {
+  const theme = useMantineTheme()
+  const computedColorScheme = useComputedColorScheme('light');
+
   return (
     <>
       <Box maw="1440px" mx="auto" px={{lg:40}} c="white" display={"flex"} className="flex-col gap-10">
@@ -27,19 +30,18 @@ const Footer: React.FC<{}> = () => {
               )
             })}
           </Box>
-          <Box display={'flex'} flex={1} className="justify-end gap-5">
+          <Box display={'flex'} flex={1} className="justify-end gap-3">
             {socialLinks.map((link, index) => {
               return (
-                <Link to={link.to} key={index}>
+                <Link to={link.to} key={index} className="size-5">
                   {iconMap[link.icon]}
                 </Link>
               )
             })}
           </Box>
         </Box>
-        <Divider className="" color="white"/>
+        <Divider style={{ borderTop: `solid 1px ${rgba(theme.colors.gray[0], .2)}`}}/>
         <Text fz={"xs"} ta={"center"}>{'© 2026 Jake Sta Teresa. All rights reserved.'}</Text>
-        
       </Box>
     </>
   )

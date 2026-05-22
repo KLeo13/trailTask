@@ -8,7 +8,7 @@ const FeaturedBlogsSection: React.FC<any> = (blogObject) => {
 
     const blog: WritingItemsProps = {
         ...blogObject[1].frontmatter,
-        slug: blogObject[0]
+        slug: blogObject[0].split("/").pop()?.replace(".mdx", "")
     }
 
     return (

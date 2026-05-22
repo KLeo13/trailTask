@@ -1,11 +1,12 @@
 import type { HeadingsProps, WritingItemsProps } from "~/utils/interface"
 import ImageOverlay from "../Template/ImageOverlay"
-import { Box, Button, Card, Combobox, Flex, Group, Image, Paper, Select, Stack, Text, Typography, useCombobox, useComputedColorScheme, useMantineTheme } from "@mantine/core"
+import { Box, Button, Card, Combobox, Flex, Group, Image, List, Paper, Select, Stack, Text, Typography, UnstyledButton, useCombobox, useComputedColorScheme, useMantineTheme } from "@mantine/core"
 import CenterHero from "../Template/Content/CenterHero"
 import { useEffect, useState } from "react"
 import { loadBlogs } from "~/utils/blogs"
 import { Link, Outlet } from "react-router"
 import { BarsIcon } from "~/utils/icons"
+import { useScrollSpy } from "@mantine/hooks"
 
 const BlogPageSection: React.FC<any> = (blogObject) => {
 
@@ -14,38 +15,12 @@ const BlogPageSection: React.FC<any> = (blogObject) => {
     const blog = blogObject.frontmatter
 
     const MDXComponent = blogObject.default
-    const [toc, setToC] = useState<HeadingsProps[]>([])
 
-    const [activeId, setActiveId] = useState("");
-
-    useEffect(() => {
-        const headings = document.querySelectorAll(".mdx h1, .mdx h2, .mdx h3")
-        const items: HeadingsProps[] = Array.from(headings).map((el) => ({
-            text: el.textContent,
-            id: el.id,
-            level: Number(el.tagName[1]),
-        }));
-        setToC(items)
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveId(entry.target.id);
-                }
-            });
-            },
-            {
-                rootMargin: "0px 0px -70% 0px", // triggers earlier
-                threshold: 0.3,
-            }
-        );
-
-        headings.forEach((el) => observer.observe(el));
-
-        return () => observer.disconnect();
-    }, [])
-    
+    const spy = useScrollSpy({
+        selector: '#mdx h2, #mdx h3',
+        getDepth: (element) => Number(element.getAttribute('data-level')),
+        getValue: (element) => element.getAttribute('data-heading') || '',
+    });
     return (
         <>
             <ImageOverlay>
@@ -59,48 +34,85 @@ const BlogPageSection: React.FC<any> = (blogObject) => {
                 </Flex>
             </ImageOverlay>
             <Image src={blog.image} alt={blog.image} w={'100%'} h={{base: 150, sm: 355, md: 500}}/>
-            <Flex pos={'relative'} p={{base: 40, md: 80}} py={{base: 20, sm: 40, md: 80}} gap={40} direction={{base: 'column', lg: 'row'}} align={{base: 'stretch', lg: 'start'}}>
-                <Card display={'flex'} p={28} className="flex-col gap-5" visibleFrom="lg" flex={0.30} bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}
-                    style={{boxShadow: `0px 2px 10px 6px ${computedColorScheme === 'dark' ? 'rgba(3, 84, 166, 0.08)' : 'rgba(1, 17, 33, 0.04)'}`}}>
+            <Flex pos={'relative'} p={{base: 40, md: 80}} py={{base: 20, sm: 40, md: 80}} gap={40} direction={{base: 'column', lg: 'row'}}>
+                <Card display={'flex'} 
+                    p={28} 
+                    className="flex-col gap-5" 
+                    visibleFrom="lg" flex={0.30} 
+                    bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} 
+                    bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}
+                    style={{
+                        boxShadow: `0px 2px 10px 6px ${computedColorScheme === 'dark' ? 'rgba(3, 84, 166, 0.08)' : 'rgba(1, 17, 33, 0.04)'}`,
+                        height: 'fit-content'
+                    }}
+                    pos={'sticky'}
+                    top={'6rem'}>
                     <Flex align="center" gap={20}>
                         <Box w={25} h={25}>
                             <BarsIcon/>
                         </Box>
-                        <Text fz={'lg'}>{'On this page'}</Text>
+                        <Text fz={'lg'} fw={'bold'}>{'On this page'}</Text>
                     </Flex>
-                    {toc.map((toc, index) => 
-                        <Link key={index} to={`#${toc.id}`} style={{
-                            paddingLeft: toc.level == 3 ? "1rem" : 'none'
-                        }}>{toc.text}</Link>
-                    )}
+                    <List pl={0} >
+                        {spy.data.map((heading, index) => {
+                            return (
+                                <List.Item
+                                    key={index}
+                                    py={5}
+                                    style={{
+                                        listStylePosition: 'inside',
+                                        paddingInlineStart: heading.depth * (2 * heading.depth),
+                                    }}
+                                >
+                                    <UnstyledButton onClick={() => heading.getNode().scrollIntoView()}>
+                                        <Text c={index === spy.active ? (computedColorScheme == 'dark' ? theme.colors.blue[4] : theme.colors.blue[6]) : 'inherit'}>{heading.value}</Text>
+                                    </UnstyledButton>
+                                </List.Item>
+                            )
+                        })}
+                    </List>
                 </Card>
-                <Select
-                    display={{base: 'block', lg: 'none'}}
-                    value={activeId}
-                    onChange={(value) => {
-                        if (!value) return;
-                            document.getElementById(value)?.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                        });
+                <Box display={{base: 'block', lg: 'none'}}
+                    pos={'sticky'}
+                    top={'6rem'}
+                    bg={computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'} 
+                    bdrs={'md'} bd={`solid 1px ${computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`}
+                    style={{
+                        boxShadow: `0px 2px 10px 6px ${computedColorScheme === 'dark' ? 'rgba(3, 84, 166, 0.08)' : 'rgba(1, 17, 33, 0.04)'}`,
                     }}
-                    data={toc.map((h) => ({
-                        value: h.id,
-                        label: `${h.text}`,
-                    }))}
-                     styles={{
-                        input: {
-                            border: `solid 1px ${computedColorScheme == 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`,
-                            backgroundColor: 'transparent'
-                        },
-                        dropdown: {
-                            border: `solid 1px ${computedColorScheme == 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`,
-                            backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'
-                        },
-                    }}
-                />
+                    w={'100%'}>
+                    <Select
+                        value={String(spy.active)}
+                        onChange={(value) => {
+                            if (!value) return;
+
+                            const index = Number(value);
+                            const heading = spy.data[index];
+
+                            heading?.getNode()?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            });
+                        }}
+                        data={spy.data.map((heading, index) => ({
+                            value: String(index),
+                            label: heading.value,
+                        }))}
+                        size="md"
+                        styles={{
+                            input: {
+                                border: `solid 1px ${computedColorScheme == 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`,
+                                backgroundColor: 'transparent'
+                            },
+                            dropdown: {
+                                border: `solid 1px ${computedColorScheme == 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]}`,
+                                backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : 'white'
+                            },
+                        }}
+                    />
+                </Box>
                 <Box flex={1} >
-                    <Paper className="mdx" bg={'transparent'}>
+                    <Paper id="mdx" bg={'transparent'}>
                         <Typography>
                             <MDXComponent/>
                         </Typography>

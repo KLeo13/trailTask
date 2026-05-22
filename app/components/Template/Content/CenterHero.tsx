@@ -1,4 +1,5 @@
 import { Flex, Text, Title, useComputedColorScheme, useMantineTheme } from "@mantine/core";
+import { HeroTitle } from "../HeroTitle";
 
 const CenterHero: React.FC<{
     title: string,
@@ -17,12 +18,7 @@ const CenterHero: React.FC<{
                     <Title order={2} fw={'normal'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>{subTitle}</Title>
                 : subTitle)
             }
-            <Title order={1} id="hero-title" className="text-5xl! lg:text-6xl! text-center" style={{
-                    background: `-webkit-linear-gradient(0deg, #064280 0%, #4B96E7 100%)`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                } as React.CSSProperties}
-            >{title}</Title>
+            <HeroTitle ta={'center'} title={title}/>
             <Text ta={'center'}>{description}</Text>
             {cta}
         </Flex>

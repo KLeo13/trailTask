@@ -37,7 +37,7 @@ const WorkPhaseSection: React.FC<WorkPhaseContentProps> = ({
 
     return (
         <section>
-            <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40, md: 60, lg: 80}} px={{base: 20, md: 40, lg: 60}} pt={{base: 40, md: 80}} pb={{base: 20, md: 40}}>
+            <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 40}} px={{base: 20, md: 40}} pt={40} pb={{base: 40, md: 80}}>
                 <Stack gap="lg">
                     <h2 className="text-4xl font-bold text-center" style={{
                         color: computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]

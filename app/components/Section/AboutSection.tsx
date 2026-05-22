@@ -34,7 +34,7 @@ const AboutItemCard: React.FC<{item: AboutItemsProps, index: number}> = ({item, 
           opened={opened} 
           onClose={close} 
           centered
-          size={'md'}
+          size={'lg'}
           title={
             <Flex direction={'column'} gap={'lg'}>
                 <Flex w={52} h={52} p={'xs'} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} bdrs={'md'} c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
@@ -48,7 +48,7 @@ const AboutItemCard: React.FC<{item: AboutItemsProps, index: number}> = ({item, 
                 <Text fz='lg' c={computedColorScheme === 'dark' ? 'white' : 'black'}>{item.subTitle}:</Text>
                 <Text c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>{item.subDescription}</Text>
                 <Text fz='lg' c={computedColorScheme === 'dark' ? 'white' : 'black'}>{item.keywordTitle}:</Text>
-                <Flex direction={'column'} align={'start'} gap="sm">
+                <Flex direction={'row'} align={'start'} gap="sm" wrap={'wrap'}>
                   {item.keywords.map((keyword, index) => {
                     return (
                       <Text key={index} bg={computedColorScheme === 'dark' ? theme.colors.blue[7] : theme.colors.blue[1]} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.blue[9]} bdrs={'10rem'} size="sm" p={8} display={'flex'}>{keyword}</Text>

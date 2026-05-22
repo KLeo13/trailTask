@@ -6,6 +6,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { rehypeCustomHeadings } from "./app/utils/helper";
 
 export default defineConfig({
   plugins: [
@@ -17,6 +18,7 @@ export default defineConfig({
       rehypePlugins: [
         rehypeSlug,
         rehypeAutolinkHeadings,
+        rehypeCustomHeadings
       ],
       providerImportSource: "@mdx-js/react"
     }),
