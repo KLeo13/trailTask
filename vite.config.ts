@@ -7,6 +7,8 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypeCustomHeadings } from "./app/utils/helper";
+import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
 
 export default defineConfig({
   plugins: [
@@ -14,15 +16,26 @@ export default defineConfig({
       remarkPlugins: [
         remarkFrontmatter,
         remarkMdxFrontmatter,
+        remarkGfm,
       ],
       rehypePlugins: [
         rehypeSlug,
         rehypeAutolinkHeadings,
-        rehypeCustomHeadings
+        rehypeCustomHeadings,
+        [
+          rehypePrettyCode,
+          {
+            theme: {
+              light: "github-light",
+              dark: "github-dark",
+            },
+            keepBackground: false,
+          },
+        ],
       ],
       providerImportSource: "@mdx-js/react"
     }),
-    tailwindcss(), 
+    tailwindcss(),
     reactRouter(),
   ],
   resolve: {

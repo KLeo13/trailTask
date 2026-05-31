@@ -29,6 +29,49 @@ html {
   font-size: 24px;
   font-weight: 500;
 }
+
+#mdx pre {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: var(--mantine-color-gray-1);
+  border: 1px solid var(--mantine-color-gray-2);
+}
+
+[data-mantine-color-scheme="dark"] #mdx pre {
+  background: var(--mantine-color-gray-8);
+  border-color: var(--mantine-color-gray-7);
+}
+
+#mdx code[data-theme*=" "],
+#mdx code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+[data-mantine-color-scheme="dark"] #mdx code[data-theme*=" "],
+[data-mantine-color-scheme="dark"] #mdx code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}
+
+#mdx :not(pre) > code {
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+  background: var(--mantine-color-gray-1);
+  font-size: 0.9em;
+}
+
+[data-mantine-color-scheme="dark"] #mdx :not(pre) > code {
+  background: var(--mantine-color-gray-8);
+}
 /* 
 html,
 body {
