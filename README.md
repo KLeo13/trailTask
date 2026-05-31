@@ -44,39 +44,67 @@ npm run build
 
 ## Deployment
 
-### Docker Deployment
+### Cloudflare Pages (production site)
 
-To build and run using Docker:
+The app builds as a static site (`ssr: false`) with prerendered routes including every blog slug under `/blogs/:slug`.
+
+| Setting | Value |
+|---------|--------|
+| Build command | `npm run build` |
+| Build output directory | `build/client` |
+| Node version | 20+ |
+
+SPA fallback for client-side routes is configured in [`public/_redirects`](public/_redirects) (`/* → /__spa-fallback.html`).
+
+Preview locally:
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm run build
+npx serve build/client -s
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+`-s` enables SPA mode (404s fall back to `index.html`). Prerendered routes like `/blogs/<slug>` are served as real files and do not need that fallback. To mimic Cloudflare’s `__spa-fallback.html` for unknown paths, add a `serve.json` inside `build/client` (see [serve-handler rewrites](https://github.com/vercel/serve-handler#rewrites)).
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+Adding a new MDX post requires a rebuild and redeploy so the new `/blogs/<slug>` HTML is generated.
 
-### DIY Deployment
+### Stripe webhooks (Cloudflare Worker)
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+Webhooks live in a **separate** Worker, not in the React Router app.
 
-Make sure to deploy the output of `npm run build`
-
+```bash
+cd workers/stripe-webhook
+npm install
+wrangler secret put STRIPE_WEBHOOK_SECRET
+wrangler deploy
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+
+Attach the Worker to `https://api.<your-domain>/webhooks/stripe` (recommended subdomain) in the Cloudflare dashboard.
+
+Local testing:
+
+```bash
+cd workers/stripe-webhook
+wrangler dev
+# In another terminal:
+stripe listen --forward-to localhost:8787/webhooks/stripe
 ```
+
+### Docker (local dev and preview)
+
+Use Docker to run a production-like build without installing Node on your machine. This is handy for local preview and parity testing; **production** for the marketing site is still Cloudflare Pages (`build/client`).
+
+Build and run:
+
+```bash
+docker build -t jake-personal-website .
+docker run -p 3000:3000 jake-personal-website
+```
+
+The container runs `npm run build` during the image build, then `npm start` (`react-router-serve` on `build/server`) at runtime. Open `http://localhost:3000`.
+
+For day-to-day development with HMR, prefer `npm run dev` on the host (no Docker required).
+
+The same image can be deployed to any Docker host (Fly.io, Railway, AWS ECS, etc.) if you want a Node server instead of static Pages.
 
 ## Styling
 

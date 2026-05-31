@@ -3,6 +3,7 @@ import { writingItems } from "~/utils/constant";
 import type { WritingItemsProps, WritingsProps } from "~/utils/interface";
 import PrimaryCard from "../Template/Cards/PrimaryCard";
 import { PrimaryButton } from "../Action/CTAButtons";
+import { mapBlogsToListItems } from "~/utils/blogs";
 
 export const WritingCard: React.FC<{item: WritingItemsProps, type: 'main' | 'thumb', index: number}> = ({item, type = 'main', index}) => {
   const theme = useMantineTheme()
@@ -29,12 +30,7 @@ const WritingSection: React.FC<WritingsProps & {blogs: any}> = ({title, descript
   const theme = useMantineTheme()
   const computedColorScheme = useComputedColorScheme('light');
 
-  const blogList = Object.entries(blogs).map(([path, blog]: any) => {
-      return {
-          ...blog.frontmatter,
-          slug: path.split("/").pop()?.replace(".mdx", "")
-      }
-  });
+  const blogList = mapBlogsToListItems(blogs);
   return (
     <section className="" style={{
       backgroundColor: computedColorScheme === 'dark' ? theme.colors.blue[8] : theme.white

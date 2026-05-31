@@ -25,7 +25,7 @@ const BlogPageSection: React.FC<any> = (blogObject) => {
         <>
             <ImageOverlay>
                 <Flex direction="column" maw={1440} mx={'auto'} gap={{base: 20, lg: 'xl'}} px={{base: 20, md: 40}} pt={{base: 40}} pb={{base: 20, md: 40}}>
-                    <CenterHero title={blog.title} description={blog.description} subTitle={<Group visibleFrom="sm" gap="sm" c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
+                    <CenterHero title={blog.title} description={blog.excerpt ?? blog.description} subTitle={<Group visibleFrom="sm" gap="sm" c={computedColorScheme === 'dark' ? theme.colors.blue[4] : theme.colors.blue[5]}>
                             <Text fz={'sm'}>{blog.category}</Text>
                             <Text fz={'sm'}>•</Text>
                             <Text fz={'sm'} c={computedColorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}>{blog.date}</Text>

@@ -4,7 +4,7 @@ import { ListIcon, ThumbnailIcon } from "~/utils/icons";
 import type { WritingItemsProps } from "~/utils/interface";
 import BlogListCard from "../Template/Cards/BlogListCard";
 import BlogThumbCard from "../Template/Cards/BlogThumbCard";
-import { loadBlogs } from "~/utils/blogs";
+import { mapBlogsToListItems } from "~/utils/blogs";
 
 const BlogsListSection: React.FC<{blogs: any, searchQuery: string}> = ({blogs, searchQuery}) => {
 
@@ -14,12 +14,7 @@ const BlogsListSection: React.FC<{blogs: any, searchQuery: string}> = ({blogs, s
     const [displayType, setDisplayType] = useState<string>('list')
     const [categoryFilter, setCategoryFilter] = useState<string | 'all'>('all')
 
-    const blogList = Object.entries(blogs).map(([path, blog]: any) => {
-        return {
-            ...blog.frontmatter,
-            slug: path.split("/").pop()?.replace(".mdx", "")
-        }
-    });
+    const blogList = mapBlogsToListItems(blogs);
     const categories = Array.from(new Set(blogList.map(item => item.category)));
 
     const [visibleCount, setVisibleCount] = useState<number>(6);

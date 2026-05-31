@@ -1,47 +1,54 @@
-import { availability, writingItems } from "~/utils/constant";
+import { availability } from "~/utils/constant";
 import type { Route } from "./+types/blog";
 import { useLoaderData } from "react-router";
-import { loadBlogs } from "~/utils/blogs";
+import { getBlogBySlug, loadBlogs } from "~/utils/blogs";
 import BlogPageSection from "~/components/Section/BlogPageSection";
 import RelatedBlogSection from "~/components/Section/RelatedBlogSection";
 import type { CollaborationProps } from "~/utils/interface";
 import CTASection from "~/components/Section/CTASection";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const post = getBlogBySlug(params.slug);
+  if (!post) {
+    return [{ title: "Not Found | Jake Sta. Teresa" }];
+  }
+  const { title, excerpt } = post.module.frontmatter;
   return [
-    { title: "Writings | Jake Sta. Teresa" },
-    { name: "description", content: "20+ years building scalable, user-centric products across AI, fintech, health tech, and enterprise." },
+    { title: `${title} | Jake Sta. Teresa` },
+    { name: "description", content: excerpt },
   ];
 }
 
-export async function loader(){
-    const data = {
-        collabData: {
-            title: `Have a project in mind?`,
-            description: `I’m always open to collaborating on meaningful products and solving complex problems together.`,
-            availability: availability[0],
-        }
-    }
-    return data
+export async function loader({ params }: Route.LoaderArgs) {
+  const post = getBlogBySlug(params.slug);
+  if (!post) {
+    throw new Response(null, { status: 404 });
+  }
+  return {
+    collabData: {
+      title: `Have a project in mind?`,
+      description: `I'm always open to collaborating on meaningful products and solving complex problems together.`,
+      availability: availability[0],
+    },
+  };
 }
-export default function Blog({params}: Route.LoaderArgs) {
 
-    const modules = loadBlogs()
+export default function Blog({ params }: Route.LoaderArgs) {
+  const post = getBlogBySlug(params.slug);
+  if (!post) {
+    throw new Response(null, { status: 404 });
+  }
 
-    const entry = Object.entries(modules).find(([path]) => {
-        return path.split("/").pop()?.replace(".mdx", "") === params.slug;
-    });
+  const relevantBlogs = loadBlogs();
+  const { collabData } = useLoaderData() as {
+    collabData: CollaborationProps;
+  };
 
-    const blog = entry?.[1];
-    const relevantBlogs = modules
-    const { collabData } = useLoaderData() as {
-        collabData: CollaborationProps
-    }
-    return (
-        <>
-            <BlogPageSection {...blog}/>
-            <RelatedBlogSection {...relevantBlogs}/>
-            <CTASection {...collabData}/>
-        </>
-    )
+  return (
+    <>
+      <BlogPageSection {...post.module} />
+      <RelatedBlogSection {...relevantBlogs} />
+      <CTASection {...collabData} />
+    </>
+  );
 }

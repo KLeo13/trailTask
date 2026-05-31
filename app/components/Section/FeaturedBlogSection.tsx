@@ -1,15 +1,18 @@
 import type { WritingItemsProps } from "~/utils/interface";
 import HalfBox from "../Template/HalfBox";
 import { Flex } from "@mantine/core";
-import BlogListCard from "../Template/Cards/BlogListCard";
 import FeaturedBlogCard from "../Template/Cards/FeaturedBlogCard";
+import { getBlogSlug } from "~/utils/blogs";
 
 const FeaturedBlogsSection: React.FC<any> = (blogObject) => {
-
+    const path = blogObject[0] as string;
+    const module = blogObject[1];
+    const { excerpt, ...rest } = module.frontmatter;
     const blog: WritingItemsProps = {
-        ...blogObject[1].frontmatter,
-        slug: blogObject[0].split("/").pop()?.replace(".mdx", "")
-    }
+        ...rest,
+        description: excerpt ?? rest.description ?? "",
+        slug: getBlogSlug(path, module),
+    };
 
     return (
         <HalfBox mih={{base: 286, md: 230, lg: 290}}>

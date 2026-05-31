@@ -2,8 +2,7 @@ import { useLoaderData, useSearchParams } from "react-router"
 import BlogsHeaderSection from "~/components/Section/BlogsHeaderSection"
 import BlogsListSection from "~/components/Section/BlogsListSection"
 import FeaturedBlogsSection from "~/components/Section/FeaturedBlogSection"
-import { writingItems } from "~/utils/constant"
-import type { WritingHeaderProps, WritingItemsProps } from "~/utils/interface"
+import type { WritingHeaderProps } from "~/utils/interface"
 import type { Route } from "./+types/blogs"
 import { loadBlogs } from "~/utils/blogs"
 
@@ -39,7 +38,7 @@ export default function Blogs() {
     return (
         <>
             <BlogsHeaderSection {...headerData} searchQuery={searchQuery} setSearchParams={setSearchParams}/>
-            {!searchQuery && <FeaturedBlogsSection {...featuredBlog}/>}
+            {!searchQuery && featuredBlog && <FeaturedBlogsSection {...featuredBlog} />}
             <BlogsListSection blogs={blogs} searchQuery={searchQuery}/>
         </>
     )

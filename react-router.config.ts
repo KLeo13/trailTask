@@ -1,10 +1,17 @@
 import type { Config } from "@react-router/dev/config";
+import { getBlogSlugsFromDisk } from "./app/utils/blog-slugs";
 
 export default {
-  // Config options...
-  // Server-side render by default, to enable SPA mode set this to `false`
-  ssr: true,
+  ssr: false,
   async prerender() {
-    return ["/", "/about", "/blogs", "/mentorship", "/work-with-me"];
+    const blogSlugs = getBlogSlugsFromDisk();
+    return [
+      "/",
+      "/about",
+      "/blogs",
+      ...blogSlugs.map((slug) => `/blogs/${slug}`),
+      "/mentorship",
+      "/work-with-me",
+    ];
   },
 } satisfies Config;

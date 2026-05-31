@@ -8,15 +8,10 @@ import type { EmblaCarouselType } from "embla-carousel"
 import { ChevronLeftIcon, ChevronRightIcon } from "~/utils/icons"
 import { Link } from "react-router"
 import { CustomCarousel } from "../Plugins/Carousel"
+import { mapBlogsToListItems } from "~/utils/blogs";
 
 const RelatedBlogSection: React.FC<any> = (blogs) => {
-    
-    const blogList = Object.entries(blogs).map(([path, blog]: any) => {
-        return {
-            ...blog.frontmatter,
-            slug: path.split("/").pop()?.replace(".mdx", "")
-        }
-    });
+    const blogList = mapBlogsToListItems(blogs);
 
     const theme = useMantineTheme()
     const computedColorScheme = useComputedColorScheme('light');
