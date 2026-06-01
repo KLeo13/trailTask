@@ -54,7 +54,7 @@ The app builds as a static site (`ssr: false`) with prerendered routes including
 | Build output directory | `build/client` |
 | Node version | 20+ |
 
-SPA fallback for client-side routes is configured in [`public/_redirects`](public/_redirects) (`/* → /__spa-fallback.html`).
+Do **not** add a `public/_redirects` catch-all (e.g. `/* /__spa-fallback.html 200`). Cloudflare Pages strips `.html` and can turn that rule into a redirect loop to `/__spa-fallback`. This app prerenders every route, and Pages already serves `index.html` for unknown paths when no `404.html` is present.
 
 Preview locally:
 
