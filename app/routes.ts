@@ -7,6 +7,7 @@ export default [
         route("mentorship", "routes/mentorship.tsx"),
         route("work-with-me", "routes/workwithme.tsx"),
         route("blogs", "routes/blogs.tsx"),
+        route("blogs/categories/:categorySlug", "routes/blog-category.tsx"),
         route("blogs/:slug", "routes/blog.tsx")
     ])
 ] satisfies RouteConfig;
