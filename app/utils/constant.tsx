@@ -41,9 +41,9 @@ export const navigationItems: NavigationItemProps[] = [
 ]
 
 export const socialLinks: SocialLinksProps[] = [
-  { label: 'LinkedIn', icon: 'linkedin', to: '#'},
-  { label: 'GitHub', icon: 'github', to: '#'},
-  { label: 'X', icon: 'x', to: '#'},
+  { label: 'LinkedIn', icon: 'linkedin', to: 'https://www.linkedin.com/in/jakestateresa/'},
+  { label: 'GitHub', icon: 'github', to: 'https://github.com/JakeStaTeresa'},
+  { label: 'X', icon: 'x', to: 'https://x.com/@JakeStaTeresa'},
 ]
 export const metricItems: AboutMetricProps[] = [
   {title: '20+', description: 'Years of Experience', icon: 'suitcase'},

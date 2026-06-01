@@ -80,7 +80,7 @@ const MentorPricingSection: React.FC<MentorPricingContentProps> = ({
     const [selectedPlan, setSelectedPlan] = useState<MentorPricing | null>(null)
     
     return (
-        <section>
+        <section id="pricing">
             <Flex direction="column" maw={1440} mx={'auto'} gap={40} px={{base: 20, md: 40, lg: 60}} py={{base: 40, md: 80}}>
                 <Stack gap="lg">
                     <h2 id='pricing-title' className="text-4xl font-bold text-center" style={{

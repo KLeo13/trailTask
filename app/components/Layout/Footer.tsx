@@ -33,7 +33,7 @@ const Footer: React.FC<{}> = () => {
           <Box display={'flex'} flex={1} className="justify-end gap-3">
             {socialLinks.map((link, index) => {
               return (
-                <Link to={link.to} key={index} className="size-5">
+                <Link to={link.to} key={index} className="size-5" target="_blank">
                   {iconMap[link.icon]}
                 </Link>
               )

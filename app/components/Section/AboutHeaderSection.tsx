@@ -57,7 +57,7 @@ const AboutHeaderSection: React.FC<AboutHeaderProps> = ({
                     <Group gap={'lg'}>
                         {socialLinks.map((link, index) => {
                         return (
-                            <Link id={`hero-social-link-${index}`} to={link.to} key={index} className="border border-blue-100 rounded size-10 flex items-center justify-center">
+                            <Link id={`hero-social-link-${index}`} to={link.to} key={index} target="_blank" className="border border-blue-100 rounded size-10 flex items-center justify-center">
                             {iconMap[link.icon]}
                             </Link>
                         )

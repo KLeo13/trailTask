@@ -101,6 +101,7 @@ export const MentorCTA: React.FC<{
       size={size}
       bg={computedColorScheme === 'dark' ? theme.colors.blue[5] :theme.colors.blue[6]}
       rightSection={<ArrowRightIcon/>}
+      onClick={() => window.location.href = '#pricing'}
     >
       {'Book an Introductory Session'}
     </PrimaryButton>
